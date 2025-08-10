@@ -1,0 +1,930 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <meta name="description" content="Discover 'I Am a Brand,' the ultimate personal branding book by Kevwe Modupe. Learn to build, position, and monetize your personal brand with practical strategies for entrepreneurs, professionals, and creatives in Nigeria and beyond.">
+    <meta name="keywords" content="personal branding, personal branding Nigeria, branding book Nigeria, Kevwe Modupe, I Am a Brand book, entrepreneurship, self-branding, personal branding guide, TSLNigeria branding, brand strategy, Nigerian entrepreneur, build personal brand, branding tips, digital branding Nigeria, storytelling, creative directing">
+    <meta name="author" content="Kevwe Modupe">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (for social sharing) -->
+    <meta property="og:title" content="I Am a Brand | Personal Branding Encyclopedia by Kevwe Modupe">
+    <meta property="og:description" content="Master your personal brand with 'I Am a Brand' by Kevwe Modupe. Pre-order now to unlock strategies for building influence and success in Nigeria and globally.">
+    <meta property="og:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iamabrandthebook.com">
+    <meta property="og:site_name" content="I Am a Brand">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Am a Brand | Personal Branding Encyclopedia">
+    <meta name="twitter:description" content="Master your personal brand with Kevwe Modupe’s book. Pre-order now for actionable branding strategies.">
+    <meta name="twitter:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link href="{% static 'assets/css/fontawesome/fontawesome.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/fontawesome/brands.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
+
+    <!-- Theme Customization -->
+    <style>
+        :root {
+            --gradient-primary: none;
+            --gradient-primary-hover: none;
+        }
+        /* Ensure spinner is centered */
+        #loading-spinner {
+            margin: 20px 0;
+        }
+    </style>
+
+    <!-- Schema Markup for Book -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "I Am a Brand",
+        "author": {
+            "@type": "Person",
+            "name": "Kevwe Modupe",
+            "sameAs": "https://kevwemodupe.com"
+        },
+        "description": "I Am a Brand is a personal branding encyclopedia by Kevwe Modupe, offering practical strategies to build, position, and monetize your personal brand for entrepreneurs, professionals, and creatives.",
+        "image": "{% static 'assets/images/index2/book-image-main.png' %}",
+        "url": "https://iamabrandthebook.com",
+        "isbn": "978-1234567890",
+        "inLanguage": "en",
+        "publisher": {
+            "@type": "Organization",
+            "name": "TSLNigeria"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "50",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/EBook"
+                }
+            },
+            {
+                "@type": "Offer",
+                "price": "70",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/Hardcover"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <title>I Am a Brand | Personal Branding Encyclopedia by Kevwe Modupe</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
+    <!-- header -->
+    <header id="navbar_top" class="bg-white">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg py-3">
+                <!-- site logo -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img class="logo-dark" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="70">
+                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="70">
+                </a>
+                <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#chapters">Chapter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#newsletter">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                       
+                    <a class="btn btn-primary rounded-pill text-white" href="{% url 'contact' %}">Buy Now Book</a>
+                </div>
+                <div class="header-seperator"></div>
+            </nav>
+        </div>
+    </header>
+    <!-- header end -->
+
+    <!-- hero section -->
+    <section id="home" class="hero-section-3   py-105">
+        <div class="container">
+            <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row g-5 d-flex justify-content-center align-items-center">
+                            <div class="col-md-6">
+                                <h1 class="display-4 fw-bold my-3">You Are Not Just a Name. You Are a Brand.</h1>
+                                <p class="fs-6 fw-normal">
+                                    Your voice, your value, your story; it all matters.
+                                    <strong>"I Am a Brand"</strong> is your guide to showing up intentionally, leading with clarity, and building a personal brand that opens doors.
+                                </p>
+                                <div class="d-flex align-items-center gap-3 mt-5">
+                                    <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row g-5 d-flex justify-content-center align-items-center">
+                            <div class="col-md-6">
+                                <h1 class="display-4 fw-bold my-3">The Ultimate Personal Branding Encyclopedia</h1>
+                                <p class="fs-6 fw-normal">
+                                    This book isn’t just a read—it’s a roadmap. <strong>"I Am a Brand"</strong> helps you communicate your value, tell your story, and build influence in business, life, and online.
+                                </p>
+                                <div class="d-flex align-items-center gap-3 mt-5">
+                                    <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+                    <span class="bi bi-arrow-left fs-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+                    <span class="bi bi-arrow-right fs-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- hero section end -->
+
+    <div class="hero-section-2-feature p-3 d-flex justify-content-center align-items-center">
+        <h3 class="text-white">
+            *Get "I Am a Brand" in iBooks, PDF & ePub formats. 
+            <a href="{% url 'contact' %}" class="text-white">Submit your details to pre-order now</a>
+            <i class="bi bi-arrow-right ms-2"></i>
+        </h3>
+    </div>
+
+    <!-- Feature Section -->
+    <section class="feature-section-3 py-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 py-5 features-2 g-5">
+                <div class="col">
+                    <div class="px-2 text-center">
+                        <i class="bi bi-person-circle display-4"></i>
+                        <h3 class="fs-3 pt-30">Build Your Brand</h3>
+                        <p class="fw-normal pt-3">
+                            Learn practical steps to craft a strong, authentic personal brand that reflects your values and vision.
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="px-2 text-center">
+                        <i class="bi bi-compass display-4"></i>
+                        <h3 class="fs-3 pt-30">Position with Strategy</h3>
+                        <p class="fw-normal pt-3">
+                            Discover how to position yourself for influence and success in your industry, online and offline.
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="px-2 text-center">
+                        <i class="bi bi-currency-dollar display-4"></i>
+                        <h3 class="fs-3 pt-30">Monetize Your Identity</h3>
+                        <p class="fw-normal pt-3">
+                            Turn your reputation into revenue by learning how to package, promote, and profit from your personal brand.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Feature Section -->
+
+    <!-- About section -->
+    <section id="about" class="about-section-3 py-5">
+        <div class="container">
+            <div class="row d-flex align-items-center gx-8 gy-5 py-5">
+                <div class="col-md-6">
+                    <div class="about-img">
+                        <img style="width:4000px;" src="{% static 'assets/images/index2/Kevwe-364x470.png' %}" alt="Kevwe Modupe" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="sub-title pb-2">AUTHOR & BRAND STRATEGIST</h3>
+                    <h2 class="display-4 fw-bold py-3"> Kevwe Modupe </h2>
+                    <p class="pb-2 fw-normal">
+                        Kevwe Modupe is a Nigerian Media Entrepreneur, Brand Strategist, Creative Director, Conversation Strategist and A Storyteller.
+                        He is the Chairman of TSLNIGERIA, a visionary and a reliable digital and branding company for world-class brands while helping African startups with the online presence required for global visibility. 
+                        Mr Kevwe Modupe created this encyclopedia to answer a question so many struggle with:
+                        “How do I show up and stand out without losing myself?”
+                        As the Chairman of TSLNIGERIA, he has vast experience in Creative Directing, Storytelling and developing strategies, and is always ready to bridge the gap in the digital world.
+                    </p>
+                    <div class="pt-3 pb-4">
+                        <img style="height: 100px; width: 100px;" src="{% static 'assets/images/index2/signature-1.png' %}" alt="Kevwe Modupe Signature" class="img-fluid">
+                    </div>
+                    <a class="btn btn-dark rounded-pill" href="https://kevwemodupe.com/" target="_blank" role="button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End about-section -->
+
+    <!-- Help section -->
+    <section style="background-image: url({% static 'assets/images/index2/background.jpg); background-repeat: no-repeat; background-size: cover;" class="help-section-3 pt-105 pb-130">
+        <div  class="container">
+            <div class="text-center pb-4">
+                <h3 class="sub-title mb-3">BENEFITS</h3>
+                <h2 class="display-4 fw-bold">We Help You Build Your Brand</h2>
+            </div>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-indicators carousel-dots">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-4 py-5">
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-book display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Branding, Broken Down Simply</h3>
+                                    <p>Understand what personal branding really means and how to own yours with intention.</p>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-lightbulb display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Clarity over Confusion</h3>
+                                    <p>From positioning to networking, this book helps you articulate who you are and what you bring to the table, clearly and confidently.</p>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-journal-check display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">A Playbook You’ll Actually Use</h3>
+                                    <p>Easy-to-follow prompts and tools you can apply in real life. Think brand story templates, practice notes and more.</p>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4 py-5">
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-megaphone display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Amplify Your Voice</h3>
+                                    <p>Learn how to communicate your value effectively across platforms and audiences.</p>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-people display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Build a Community</h3>
+                                    <p>Create a loyal audience by fostering authentic connections through your brand.</p>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-rocket-takeoff display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Launch with Confidence</h3>
+                                    <p>Get the tools to launch your brand with a clear strategy and measurable goals.</p>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4 py-5">
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-shield-check display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Stay Authentic</h3>
+                                    <p>Build a brand that’s true to you, avoiding common pitfalls of inauthenticity.</p>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-graph-up display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Grow Your Influence</h3>
+                                    <p>Leverage your brand to open doors and create opportunities in your industry.</p>
+                                 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="help-content bg-white rounded-2 px-4 py-5">
+                                    <i class="bi bi-trophy display-4"></i>
+                                    <h3 class="fs-3 pb-3 pt-4">Achieve Lasting Impact</h3>
+                                    <p>Create a legacy through a brand that resonates and endures over time.</p>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="bi bi-arrow-left fs-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="bi bi-arrow-right fs-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- End help section -->
+
+    <!-- Product Section -->
+    <section id="products" class="product-section-3 py-105">
+        <div class="container">
+            <div class="row gy-3 product-top-content justify-content-between">
+                <div class="col-md-8">
+                    <h3 class="sub-title mb-2">BEST SELLER</h3>
+                    <h2 class="fs-1 fw-bold">Pick the Weekly Best-Selling Book by Kevwe Modupe.</h2>
+                </div>
+         
+            </div>
+            <div class="row g-32">
+                <div class="col-md-3">
+                    <div class="product-3 rounded-1">
+                        <img  src="{% static 'assets/images/index2/font.png' %}"  alt="I Am a Brand book cover" class="img-fluid">
+                        <div class="p-4">
+                            <p>Personal Growth, Branding</p>
+                            <a  class="text-decoration-none">
+                                <h3 class="fs-5">I Am a Brand</h3>
+                            </a>
+                            <div class="pt-2">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <div class="pt-2">
+                                <span class="me-2">$70 / ₦100,000 </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Product Section -->
+
+    <!-- Process section -->
+    <section id="testimonials" class="process-section-3 py-105">
+        <div class="container">
+            <div class="text-center process-title-2">
+                <h3 class="sub-title mb-3">Testimonials</h3>
+                <h2 class="display-4 fw-bold">What Readers Are Saying</h2>
+            </div>
+            <div id="carouselExampleDark3" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row bg-white g-4 py-4">
+                            <div class="col-md-4 process-border">
+                                <div class="text-center px-4 py-5">
+                                    <h3 class="process-content-title"> Joseph Madu</h3>
+                                    <p class="fw-normal">“A must-read book for anyone clueless about how to market themselves. It is clear, concise, and packed with insightful content.”</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center px-4 py-5">
+                                    <h3 class="process-content-title">Dr. Osaze Omonose</h3>
+                                    <p class="fw-normal">“Dr. Kevwe Modupe has managed to carefully craft and explain a concept as complex as marketing one’s brand. This book is a well of knowledge filled with detailed chapters and achievable outcomes.”</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row bg-white g-4 py-4">
+                            <div class="col-md-4 process-border">
+                                <div class="text-center px-4 py-5">
+                                    <h3 class="process-content-title"> Patrick Ozah</h3>
+                                    <p class="fw-normal">“This book is a wake-up call for people with zero to no digital identity. It accurately depicts the schematics of the current digital marketplace while outlining ways to beat the system.”</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center px-4 py-5">
+                                    <h3 class="process-content-title">Dr. Mrs. Judith Akah</h3>
+                                    <p class="fw-normal">“Dr. Modupe deserves his accolades on such an amazing piece. He captures the essence of branding and explains it in a manner that can be easily understood. He is the herald of the branding field and this book is evidence of that.”</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark3" data-bs-slide="prev">
+                    <span class="bi bi-arrow-left fs-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark3" data-bs-slide="next">
+                    <span class="bi bi-arrow-right fs-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- End process section -->
+
+    <!-- Content section -->
+    <section id="chapters" class="content-section-2">
+        <div class="container">
+            <div class="row align-items-center gx-32">
+                <div class="col-md-6">
+                    <div class="py-30">
+                        <h3 class="sub-title mb-3">Chapters</h3>
+                        <h2 class="display-4 fw-bold mb-30">Why You Should Read This Book</h2>
+                        <p class="fw-normal">
+                            This isn’t just another branding book. It’s your blueprint.
+                            Whether you're a young professional trying to find your footing, a creative looking to stand out, or a leader ready to refine your voice, I Am A Brand gives you the clarity, language, and tools to tell your story with confidence.
+                            It’s part mindset manual, part strategy guide, and fully packed with real-world insight on how to define your brand, build credibility, and stay authentic in every room you walk into.
+                        </p>
+                        <p class="fw-normal">
+                            Whether you're an entrepreneur, student, professional, or creative, this book equips you to stand out by being more of yourself—not less.
+                        </p>
+                        <a class="btn btn-dark rounded-pill mt-32" href="#" role="button">
+                            <i class="bi bi-file-earmark-pdf-fill me-2"></i>Buy the Book Now!
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'assets/images/index2/font.png' %}" alt="I Am a Brand Book Image" class="img-fluid content-img-2">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End content section -->
+
+    <!-- Price section -->
+    <section class="price-section-3 py-105">
+        <div class="container">
+            <div class="text-center">
+                <h3 class="sub-title mb-3">Pricing</h3>
+                <h2 class="display-4 fw-bold">Pricing That’s Just Right</h2>
+            </div>
+            <div class="row g-32 gy-5">
+                <!-- Ebook Plan -->
+                <div class="col-md-6">
+                    <div class="rounded-3 price-active">
+                        <div class="px-4 pt-5 h-100">
+                            <div class="row pb-3">
+                                <div class="col-md-6">
+                                    <h5 class="fs-2 pb-2">Ebook/PDF</h5>
+                                    <p class="fw-normal">Digital Download</p>
+                                    <h5 class="fw-bold">$50 / ₦57,500</h5>
+                                </div>
+                            </div>
+                            <p class="pb-3 fw-normal">Download the ebook version in PDF format.</p>
+                            <ul class="pricing-features list-unstyled price-border px-2 pt-3 mb-0">
+                                <li><div class="d-flex justify-content-between align-items-center"><span>PDF Format</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Ebook Format</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Hard Copy</span><i class="fs-4 bi bi-x"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Audio Book</span><i class="fs-4 bi bi-x"></i></div></li>
+                            </ul>
+                        </div>
+                   <!-- Ebook Button -->
+                    <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
+                            data-price="57500"
+                            data-plan="Ebook/PDF">
+                    Get it now
+                    </button>
+                    </div>
+                </div>
+                <!-- Printed Plan -->
+                <div class="col-md-6">
+                    <div class="rounded-3 price-active">
+                        <div class="px-4 pt-5 h-100">
+                            <div class="row pb-3">
+                                <div class="col-md-6">
+                                    <h3 class="fs-2 pb-2">Printed Copy</h3>
+                                    <p class="fw-normal">Physical Book</p>
+                                    <h5 class="fw-bold">$70 / ₦100,000</h5>
+                                </div>
+                            </div>
+                            <p class="pb-3 fw-normal">Get the printed version of the book</p>
+                            <ul class="pricing-features list-unstyled price-border px-2 pt-3 mb-0">
+                                <li><div class="d-flex justify-content-between align-items-center"><span>PDF Format</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Ebook Format</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Hard Copy</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Audio Book</span><i class="fs-4 bi bi-x"></i></div></li>
+                            </ul>
+                        </div>
+                      <!-- Printed Button -->
+                    <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
+                            data-price="100000"
+                            data-plan="Printed Copy">
+                    Get it now
+                    </button>
+                                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End price section -->
+{% comment %} 
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="newsletter-section-2 py-105">
+        <div class="container">
+            <div class="text-center">
+                <h3 class="sub-title mb-3">Latest Insights</h3>
+                <h2 class="display-4 fw-bold mb-7">Weekly Inspiration & Tips From Kevwe Modupe</h2>
+            </div>
+            <div class="text-center" id="loading-spinner" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="row g-32" id="newsletter-posts">
+                <!-- Blog posts will be injected here -->
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Newsletter Feature Section -->
+    <section id="newsletter-footer" class="newsletter-feature-section py-9">
+        <div  class="container">
+            <div class="row gy-5 align-items-center">
+                <div class="col-md-6">
+                    <div>
+                        <h2 class="display-5 fw-bold mb-20">Want to build your brand, week by week?</h2>
+                        <p class="fw-normal">Sign up for personal branding tips, stories, and tools from the author; straight to your inbox</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-control-ps">
+                        <div class="position-relative">
+                            <form action="#" method="post">
+                                <input class="form-control rounded-pill" type="email" name="email" placeholder="Enter your email">
+                                <div class="submit-2">
+                                    <button class="btn btn-dark rounded-pill" type="submit"><span class="">Get it now</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="footer" class="footer-3 pt-90">
+        <div  class="container">
+            <div class="row gx-5 gy-4">
+                <div class="col-md-3">
+                    <a href="https://kevwmodupe.com"><img src="{% static 'assets/images/logo.png' %}" alt="Kevwe Modupe Logo" width="70" class="img-fluid mb-3"></a>
+                    <p>Empowering people to unlock their voice, build visibility, and live out their brand boldly.</p>
+                    <ul class="d-flex gap-3 ps-0 pt-4 social-icons">
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 offset-md-1">
+                    <div class="footer-links">
+                        <h4 class="mb-4">Explore</h4>
+                        <ul class="li-unstyled ps-0 footer-content">
+                            <li class="mb-3"><a href="#"><span class="ms-1">About Kevwe</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Books</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Podcast</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Speaking</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Contact</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="mb-4">Support</h4>
+                    <ul class="li-unstyled ps-0 footer-content footer-contact">
+                        <li class="mb-3"><a href="#">FAQs</a></li>
+                        <li class="mb-3"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-3"><a href="#">Terms of Use</a></li>
+                        <li class="mb-3"><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="mb-4">Get in Touch</h4>
+                    <ul class="li-unstyled ps-0 footer-content">
+                        <li class="mb-2"><a href="#" class="d-flex gap-2"><i class="bi bi-geo-alt fs-4"></i>
+                            <span>Lagos, Nigeria</span></a></li>
+                        <li class="mb-2"><a href="mailto:info@iamabrandthebook.com" class="d-flex gap-2 align-items-center"><i
+                            class="bi bi-envelope fs-4"></i><span>info@iamabrandthebook.com</span></a></li>
+                        <li class="mb-2"><a href="#" class="d-flex gap-2 align-items-center"><i
+                            class="bi bi-telephone fs-4"></i><span>+234 810 123 4567</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-2 mt-90 text-center">
+            <h6 class="fw-normal">&copy; 2025I Am A Brand. All Rights Reserved</h6>
+        </div>
+        <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    {% comment %} <script>
+        // Initialize AOS
+        AOS.init();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // Replace with your actual NewsData.io API key
+    const API_KEY = 'pub_78a29399ee624501bf2727e057e9aa5a'; // Replace with your NewsData.io API key
+
+    // Function to show spinner
+    function showSpinner() {
+        const spinner = document.getElementById('loading-spinner');
+        if (spinner) {
+            spinner.style.display = 'block';
+        } else {
+            console.warn('Spinner element not found in the DOM');
+        }
+    }
+
+    // Function to hide spinner
+    function hideSpinner() {
+        const spinner = document.getElementById('loading-spinner');
+        if (spinner) {
+            spinner.style.display = 'none';
+        } else {
+            console.warn('Spinner element not found in the DOM');
+        }
+    }
+
+    // Function to validate image URL
+    function isValidImageUrl(url) {
+        if (!url || typeof url !== 'string') return false;
+        const imageExtensions = /\.(jpg|jpeg|png|gif|webp)$/i;
+        return imageExtensions.test(url);
+    }
+
+    // Function to fetch and render blog posts
+    async function fetchNewsletterPosts() {
+        showSpinner();
+        try {
+            // Fetch articles strictly about branding or personal branding
+            const response = await fetch(`https://newsdata.io/api/1/news?apikey=${API_KEY}&q=personal+branding+OR+branding&language=en`);
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.message || 'No additional error message'}`);
+            }
+            const data = await response.json();
+
+            // Get the container where posts will be injected
+            const container = document.getElementById('newsletter-posts');
+            if (!container) {
+                throw new Error('Newsletter posts container element not found in the DOM');
+            }
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            // Check if articles are available
+            if (data.status === 'success' && data.results && data.results.length > 0) {
+                // Filter articles to only those with valid images, title, and link; limit to 3
+                const validArticles = data.results
+                    .filter(article => article.title && article.link && isValidImageUrl(article.image_url))
+                    .slice(0, 3);
+
+                if (validArticles.length > 0) {
+                    // Generate recent dates starting from July 28, 2025
+                    const baseDate = new Date('2025-07-28');
+                    const dateOffsets = [0, -7, -14]; // Days to subtract for each post
+
+                    validArticles.forEach((article, index) => {
+                        // Calculate date
+                        const postDate = new Date(baseDate);
+                        postDate.setDate(baseDate.getDate() + dateOffsets[index]);
+                        const formattedDate = postDate.toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                        });
+
+                        // Use article image (already validated)
+                        const imageUrl = article.image_url;
+
+                        // Create card HTML
+                        const cardHTML = `
+                            <div class="col-md-4" data-aos="fade-left" data-aos-duration="${900 + index * 100}">
+                                <div class="card">
+                                    <div class="card-body px-3">
+                                        <div class="news-profile">
+                                            <i class="bi bi-person-fill pe-1"></i><span class="fw-normal pe-2">Kevwe Modupe</span>
+                                            <i class="bi bi-calendar-fill pe-1"></i><span class="fw-normal pe-2">${formattedDate}</span>
+                                        </div>
+                                        <h3 class="fs-3 py-2">${article.title}</h3>
+                                    </div>
+                                    <img src="${imageUrl}" alt="${article.title}" onerror="this.style.display='none';">
+                                    <div class="px-3 py-2">
+                                        <a href="${article.link || 'blog-single.html?id=' + index}" class="icon-link text-decoration-none py-3">
+                                            <p class="fw-normal">Read More</p>
+                                            <i class="bi bi-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', cardHTML);
+                    });
+                } else {
+                    container.innerHTML = `
+                        <div class="col-12 text-center">
+                            <p>No branding insights with valid images found. Check back later for updates.</p>
+                        </div>
+                    `;
+                }
+            } else {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p>No branding insights available at this time. Please try again later.</p>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+            const container = document.getElementById('newsletter-posts');
+            if (container) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p class="text-danger">Failed to fetch branding insights: ${error.message}. Please try again later.</p>
+                    </div>
+                `;
+            }
+        } finally {
+            hideSpinner();
+        }
+    }
+
+    // Call the function to fetch and display posts
+    fetchNewsletterPosts();
+});
+    </script>
+ {% endcomment %}
+
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  let selectedPlan = "";
+  let selectedPrice = 0;
+  let emailModalInstance;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const modalElement = document.getElementById('emailModal');
+    emailModalInstance = new bootstrap.Modal(modalElement, {});
+  });
+
+  document.querySelectorAll('.pay-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      selectedPlan = this.getAttribute('data-plan');
+      selectedPrice = this.getAttribute('data-price');
+
+      // Show spinner before modal
+      document.getElementById('spinnerOverlay').style.display = 'flex';
+
+      setTimeout(() => {
+        document.getElementById('spinnerOverlay').style.display = 'none';
+        emailModalInstance.show();
+      }, 1000);
+    });
+  });
+
+  function startPayment() {
+    const email = document.getElementById('userEmail').value.trim();
+    if (!email) return alert("Please enter a valid email.");
+
+    // Hide modal and show spinner
+    emailModalInstance.hide();
+    document.getElementById('spinnerOverlay').style.display = 'flex';
+
+    const handler = PaystackPop.setup({
+      key: "pk_test_5580f196a24b363621f46e1ea34b462b6a9da588",
+      email: email,
+      amount: selectedPrice * 100,
+      currency: "NGN",
+      callback: function (response) {
+        fetch('/process-payment/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+          },
+          body: JSON.stringify({
+            email: email,
+            plan: selectedPlan
+          })
+        })
+        .then(() => {
+          window.location.href = "/payment-success/";
+        });
+      },
+      onClose: function () {
+        document.getElementById('spinnerOverlay').style.display = 'none';
+        alert("Payment not completed.");
+      }
+    });
+
+    handler.openIframe();
+  }
+
+  // CSRF Token helper for Django
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + "=")) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+</script>
+
+
+
+
+
+    <!-- Email Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-4">
+      <h5 class="modal-title mb-3">Enter Your Email</h5>
+      <input type="email" id="userEmail" class="form-control mb-3" placeholder="Email" required>
+      <button class="btn btn-primary w-100" onclick="startPayment()">Proceed to Pay</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Spinner + Dark Overlay -->
+<div id="spinnerOverlay" style="display: none; position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1055; align-items: center; justify-content: center;">
+  <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+
+
+</body>
+
+
+
+</html>
