@@ -73,36 +73,31 @@
 
 /* Shared box */
 .count-box {
-  min-width: 120px;
-  padding: 18px 14px;
+  min-width: 130px;              /* wider base size */
+  min-height: 130px;             /* ensure height matches width for boxy look */
+  padding: 20px 16px;
   border-radius: 12px;
-  background: rgba(7, 84, 217, 0.85); /* dark green panel */
+  background: rgba(7, 84, 217, 0.85); /* blue panel */
   border: 1px solid rgba(255,255,255,0.06);
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
   text-align: center;
   color: #fff;
+  display: flex;                 /* center content vertically */
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Number + dot under number */
+/* Number */
 .count-number {
-  font-size: 2.4rem;
+  font-size: 3.6rem;
   font-weight: 800;
   display: block;
   line-height: 1;
   position: relative;
+  margin-bottom: 8px;
 }
 
-/* small dot under the number (greenish) */
-.count-number::after {
-  content: "";
-  display: block;
-  width: 10px;
-  height: 10px;
-  background: #96bbffff;
-  border-radius: 50%;
-  margin: 10px auto 6px;
-  box-shadow: 0 0 0 6px rgba(208,255,150,0.06);
-}
+
 
 /* Label */
 .count-label {
@@ -111,6 +106,31 @@
   text-transform: uppercase;
   color: rgba(255,255,255,0.92);
 }
+
+/* Smaller boxes on small screens */
+@media (max-width: 767.98px) {
+  .count-box { 
+    min-width: 100px;
+    min-height: 100px;
+    padding: 14px;
+  }
+  .count-number { font-size: 2rem; }
+}
+
+
+/* small dot under the number (greenish) */
+{% comment %} .count-number::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #96bbffff;
+  border-radius: 50%;
+  margin: 10px auto 6px;
+  box-shadow: 0 0 0 6px rgba(208,255,150,0.06);
+} {% endcomment %}
+
+
 
 /* Slightly smaller boxes on small screens */
 @media (max-width: 767.98px) {
@@ -262,10 +282,9 @@
     </header>
     <!-- header end -->
 
-
     <!-- hero section -->
 <section id="home" class="hero-section-3 py-5">
-  <div class="container">
+  <div class="container py-5">
     <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
       <div class="carousel-inner">
 
@@ -275,6 +294,25 @@
             <!-- IMAGE first -->
             <div class="col-lg-4 col-md-6 text-center order-1">
               <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
+              <!-- COUNTDOWN below the image for small screens only -->
+              <div class="hero-countdown-mobile d-lg-none mt-3">
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-days" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Days</span>
+                </div>
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-hours" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Hours</span>
+                </div>
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-minutes" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Minutes</span>
+                </div>
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-seconds" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Seconds</span>
+                </div>
+              </div>
             </div>
 
             <!-- TEXT (middle) -->
@@ -284,13 +322,11 @@
                 Your voice, your value, your story; it all matters.
                 <strong>"I Am a Brand"</strong> is your guide to showing up intentionally, leading with clarity, and building a personal brand that opens doors.
               </p>
-
-                         <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
-                                <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
-                            </div>
-
-              <!-- MOBILE countdown: visible only on small screens, directly under the button -->
-              <div class="hero-countdown-mobile d-lg-none mt-4">
+              <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
+                <a href="#" class="btn btn-primary btn-lg rounded-pill">Pre-order Now</a>
+              </div>
+              <!-- MOBILE countdown: visible only on small screens, directly under the button (hidden for this structure) -->
+              <div class="hero-countdown-mobile d-lg-none mt-4" style="display: none;">
                 <div class="count-box">
                   <span class="count-number cd-days">00</span>
                   <span class="count-label">Days</span>
@@ -310,7 +346,7 @@
               </div>
             </div>
 
-            <!-- DESKTOP countdown: vertical stack on the right -->
+            <!-- DESKTOP countdown: vertical stack on the right for large screens -->
             <div class="col-lg-3 d-none d-lg-flex order-3">
               <div class="hero-count-wrapper w-100">
                 <div class="hero-countdown-desktop me-3">
@@ -340,7 +376,26 @@
         <div class="carousel-item">
           <div class="row g-5 align-items-center">
             <div class="col-lg-4 col-md-6 text-center order-1">
-              <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
+              <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main2.png' %}" alt="I Am a Brand book cover">
+              <!-- COUNTDOWN below the image for small screens only -->
+              <div class="hero-countdown-mobile  d-lg-none mt-3">
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-days" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Days</span>
+                </div>
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-hours" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Hours</span>
+                </div>
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-minutes" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Minutes</span>
+                </div>
+                <div class="count-box d-flex flex-column align-items-center">
+                  <span class="count-number cd-seconds" style="font-size: 0.8em;">00</span>
+                  <span class="count-label" style="font-size: 0.7em;">Seconds</span>
+                </div>
+              </div>
             </div>
 
             <div class="col-lg-5 col-md-6 order-2">
@@ -348,12 +403,11 @@
               <p class="fs-6 fw-normal">
                 This book isn’t just a read—it’s a roadmap. <strong>"I Am a Brand"</strong> helps you communicate your value, tell your story, and build influence in business, life, and online.
               </p>
-                            <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
-                                <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
-                            </div>
-
-              <!-- MOBILE countdown for slide 2 -->
-              <div class="hero-countdown-mobile d-lg-none mt-4">
+              <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
+                <a href="#" class="btn btn-primary btn-lg rounded-pill">Pre-order Now</a>
+              </div>
+              <!-- MOBILE countdown: visible only on small screens, directly under the button (hidden for this structure) -->
+              <div class="hero-countdown-mobile d-lg-none mt-4" style="display:none;">
                 <div class="count-box">
                   <span class="count-number cd-days">00</span>
                   <span class="count-label">Days</span>
@@ -397,6 +451,112 @@
             </div>
           </div>
         </div>
+
+
+        <!-- Slide 3 -->
+<div class="carousel-item">
+  <div class="row g-5 align-items-center">
+    <!-- IMAGE first -->
+    <div class="col-lg-4 col-md-6 text-center order-1">
+      <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main3.png' %}" alt="Brand Power">
+      <!-- COUNTDOWN below the image for small screens only -->
+      <div class="hero-countdown-mobile d-lg-none mt-3">
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-days" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Days</span>
+        </div>
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-hours" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Hours</span>
+        </div>
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-minutes" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Minutes</span>
+        </div>
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-seconds" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT -->
+    <div class="col-lg-5 col-md-6 order-2">
+      <h1 class="display-4 fw-bold my-3">Your Name Carries Power</h1>
+      <p class="fs-6 fw-normal">
+        “Your name carries power, and when you stand behind it with confidence, it becomes a brand the world remembers."
+      </p>
+      <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
+        <a href="#" class="btn btn-primary btn-lg rounded-pill">Pre-order Now</a>
+      </div>
+    </div>
+
+    <!-- DESKTOP countdown -->
+    <div class="col-lg-3 d-none d-lg-flex order-3">
+      <div class="hero-count-wrapper w-100">
+        <div class="hero-countdown-desktop me-3">
+          <div class="count-box"><span class="count-number cd-days">00</span><span class="count-label">Days</span></div>
+          <div class="count-box"><span class="count-number cd-hours">00</span><span class="count-label">Hours</span></div>
+          <div class="count-box"><span class="count-number cd-minutes">00</span><span class="count-label">Minutes</span></div>
+          <div class="count-box"><span class="count-number cd-seconds">00</span><span class="count-label">Seconds</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 4 -->
+<div class="carousel-item">
+  <div class="row g-5 align-items-center">
+    <!-- IMAGE first -->
+    <div class="col-lg-4 col-md-6 text-center order-1">
+      <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main4.png' %}" alt="Brand Legacy">
+      <!-- COUNTDOWN below the image for small screens only -->
+      <div class="hero-countdown-mobile d-lg-none mt-3">
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-days" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Days</span>
+        </div>
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-hours" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Hours</span>
+        </div>
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-minutes" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Minutes</span>
+        </div>
+        <div class="count-box d-flex flex-column align-items-center">
+          <span class="count-number cd-seconds" style="font-size: 0.8em;">00</span>
+          <span class="count-label" style="font-size: 0.7em;">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT -->
+    <div class="col-lg-5 col-md-6 order-2">
+      <h1 class="display-4 fw-bold my-3">Building More Than a Business</h1>
+      <p class="fs-6 fw-normal">
+        "Every action you take today is building more than a business. It is creating a presence, a voice, and a legacy that will outlast trends."
+      </p>
+      <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
+        <a href="#" class="btn btn-primary btn-lg rounded-pill">Pre-order Now</a>
+      </div>
+    </div>
+
+    <!-- DESKTOP countdown -->
+    <div class="col-lg-3 d-none d-lg-flex order-3">
+      <div class="hero-count-wrapper w-100">
+        <div class="hero-countdown-desktop me-3">
+          <div class="count-box"><span class="count-number cd-days">00</span><span class="count-label">Days</span></div>
+          <div class="count-box"><span class="count-number cd-hours">00</span><span class="count-label">Hours</span></div>
+          <div class="count-box"><span class="count-number cd-minutes">00</span><span class="count-label">Minutes</span></div>
+          <div class="count-box"><span class="count-number cd-seconds">00</span><span class="count-label">Seconds</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       </div>
 
@@ -480,9 +640,9 @@
                         As the Chairman of TSLNIGERIA, he has vast experience in Creative Directing, Storytelling and developing strategies, and is always ready to bridge the gap in the digital world.
                     </p>
                     <div class="pt-3 pb-4">
-                        <img style="height: 100px; width: 100px;" src="{% static 'assets/images/index2/signature-1.png' %}" alt="Kevwe Modupe Signature" class="img-fluid">
+                        <img style="width:150px;" src="{% static 'assets/images/index2/signature-1.png' %}" alt="Kevwe Modupe Signature" class="img-fluid">
                     </div>
-                    <a class="btn btn-dark rounded-pill" href="https://kevwemodupe.com/" target="_blank" role="button">Learn More</a>
+                    <a class="btn btn-primary rounded-pill" href="https://kevwemodupe.com/" target="_blank" role="button">Learn More</a>
                 </div>
             </div>
         </div>
@@ -709,7 +869,7 @@
                         <p class="fw-normal">
                             Whether you're an entrepreneur, student, professional, or creative, this book equips you to stand out by being more of yourself—not less.
                         </p>
-                        <a class="btn btn-dark rounded-pill mt-32" href="#" role="button">
+                        <a class="btn btn-primary rounded-pill mt-32" href="#" role="button">
                             <i class="bi bi-file-earmark-pdf-fill me-2"></i>Buy the Book Now!
                         </a>
                     </div>
@@ -750,12 +910,12 @@
                             </ul>
                         </div>
                    <!-- Ebook Button -->
-                    {% comment %} <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
+                    {% comment %} <button class="btn btn-primary w-100 rounded-pill btn-pricing-2 pay-btn"
                             data-price="57500"
                             data-plan="Ebook/PDF">
                     Get it now
                     </button> {% endcomment %}
-                      <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 ">
+                      <button class="btn btn-primary w-100 rounded-pill btn-pricing-2 ">
                     Get it now
                     </button>
                     </div>
@@ -780,12 +940,12 @@
                             </ul>
                         </div>
                       <!-- Printed Button -->
-                    {% comment %} <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
+                    {% comment %} <button class="btn btn-primary w-100 rounded-pill btn-pricing-2 pay-btn"
                             data-price="100000"
                             data-plan="Printed Copy">
                     Get it now
                     </button> {% endcomment %}
-                      <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 ">
+                      <button class="btn btn-primary w-100 rounded-pill btn-pricing-2 ">
                     Get it now
                     </button>
                                         </div>
@@ -829,7 +989,7 @@
                             <form action="#" method="post">
                                 <input class="form-control rounded-pill" type="email" name="email" placeholder="Enter your email">
                                 <div class="submit-2">
-                                    <button class="btn btn-dark rounded-pill" type="submit"><span class="">Get it now</span></button>
+                                    <button class="btn btn-primary rounded-pill" type="submit"><span class="">Get it now</span></button>
                                 </div>
                             </form>
                         </div>
