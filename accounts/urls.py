@@ -11,6 +11,7 @@ urlpatterns = [
     path('',views.home,name="home"),        
     path('home/',views.home,name="home"),   
     path('contact/',views.contact,name='contact'),  
+    path('blog/',views.blog_view,name='blog'),
     path('process-payment/', views.process_payment, name='process_payment'),
     path('payment-success/', TemplateView.as_view(template_name='payment_success.html')),
     path('send-contact-message/', views.send_contact_message, name='send_contact_message'),

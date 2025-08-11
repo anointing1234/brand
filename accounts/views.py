@@ -96,3 +96,8 @@ def send_contact_message(request):
         return JsonResponse({'status': 'success'})
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+
+def blog_view(request):
+    return render(request,'blog.html')

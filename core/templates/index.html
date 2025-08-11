@@ -52,6 +52,41 @@
         #loading-spinner {
             margin: 20px 0;
         }
+        /* Custom styles for countdown pop-up */
+        #countdownModal .modal-content {
+            border-radius: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+        }
+        #countdownModal .modal-header {
+            background-color: #0d6dcdff;
+            color: white;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        #countdownModal .modal-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        #countdownModal .modal-body {
+            padding: 2rem;
+        }
+        #countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #000000ff; /* Red for urgency */
+            letter-spacing: 2px;
+        }
+        #countdownModal .modal-footer {
+            background-color: #e9ecef;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        #countdownModal .modal-footer span {
+            font-size: 1.1rem;
+        }
     </style>
 
     <!-- Schema Markup for Book -->
@@ -132,7 +167,7 @@
                             <a class="nav-link" href="{% url 'home' %}#chapters">Chapter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}#newsletter">Blog</a>
+                            <a class="nav-link" href="#">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'contact' %}">Contact</a>
@@ -673,6 +708,25 @@
         <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
     </footer>
 
+    <!-- Countdown Pop-up Modal -->
+    <div class="modal fade" id="countdownModal" tabindex="-1" aria-labelledby="countdownModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="countdownModalLabel">Countdown to Pre-Order</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <div id="countdown"></div>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <span>Sold: 0</span>
+            <span>Ordered: 0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -898,6 +952,41 @@
   }
 </script>
 
+<script>
+  // Countdown Pop-up Logic
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize and show the modal on page load
+    const countdownModal = new bootstrap.Modal(document.getElementById('countdownModal'), {
+      backdrop: 'static', // Prevent closing by clicking outside
+      keyboard: false     // Prevent closing with ESC key (optional)
+    });
+    countdownModal.show();
+
+    // Set the countdown target date (September 6, 2025, 00:00:00)
+    const countDownDate = new Date("September 6, 2025 00:00:00").getTime();
+
+    // Update the countdown every second
+    const countdownInterval = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      // Calculate days, hours, minutes, seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the countdown
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // If the countdown is over
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").innerHTML = "Pre-Order is Live!";
+      }
+    }, 1000);
+  });
+</script>
 
 
 
@@ -915,7 +1004,7 @@
 
 
 <!-- Spinner + Dark Overlay -->
-<div id="spinnerOverlay" style="display: none; position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1055; align-items: center; justify-content: center;">
+<div id="spinnerOverlay" style="display: none; position: fixed; inset: 0; background-color: rgba(20, 0, 172, 0.6); z-index: 1055; align-items: center; justify-content: center;">
   <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
