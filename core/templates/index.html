@@ -64,16 +64,18 @@
   width: 100%;
 }
 
+/* Mobile wrapper: use flex by default so we can easily force 4-in-row on narrow phones */
 .hero-countdown-mobile {
   display: flex;
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 /* Shared box */
 .count-box {
-  min-width: 130px;              /* wider base size */
+  min-width: 130px;              /* wider base size for desktop */
   min-height: 130px;             /* ensure height matches width for boxy look */
   padding: 20px 16px;
   border-radius: 12px;
@@ -85,6 +87,7 @@
   display: flex;                 /* center content vertically */
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 /* Number */
@@ -97,8 +100,6 @@
   margin-bottom: 8px;
 }
 
-
-
 /* Label */
 .count-label {
   font-size: 0.85rem;
@@ -107,18 +108,7 @@
   color: rgba(255,255,255,0.92);
 }
 
-/* Smaller boxes on small screens */
-@media (max-width: 767.98px) {
-  .count-box { 
-    min-width: 100px;
-    min-height: 100px;
-    padding: 14px;
-  }
-  .count-number { font-size: 2rem; }
-}
-
-
-/* small dot under the number (greenish) */
+/* small dot under the number (greenish) - preserved as a template comment */
 {% comment %} .count-number::after {
   content: "";
   display: block;
@@ -130,12 +120,71 @@
   box-shadow: 0 0 0 6px rgba(208,255,150,0.06);
 } {% endcomment %}
 
+/* ------------------------------
+   RESPONSIVE RULES
+   - >=768px: desktop look (default)
+   - <=767.98px: general small screens
+   - <=480px: force 4 boxes in a row (fits 414px, 390px, etc.)
+   - <=320px: switch to 2x2 grid for very narrow screens
+   ------------------------------ */
 
-
-/* Slightly smaller boxes on small screens */
+/* General small screens (tablet -> phone) */
 @media (max-width: 767.98px) {
-  .count-box { min-width: 84px; padding: 12px; }
-  .count-number { font-size: 1.6rem; }
+  .hero-countdown-mobile { gap: 10px; }
+
+  .count-box {
+    /* smaller base for phones, but allow width rules below to override */
+    min-width: 84px;
+    min-height: 84px;
+    padding: 12px;
+  }
+
+  /* override inline font-size if present on spans (we use !important to be safe) */
+  .count-number { font-size: 1.6rem !important; }
+  .count-label  { font-size: 0.75rem !important; }
+}
+
+/* Narrow phones (ensure 4 boxes fit across: 414px, 428px, 390px etc.) */
+@media (max-width: 480px) {
+  .hero-countdown-mobile {
+    gap: 8px;
+    /* prevent wrapping so the four width:calc() boxes sit on one row */
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+  }
+
+  /* Each box takes 1/4 of the container minus 3 gaps */
+  .hero-countdown-mobile .count-box {
+    width: calc((100% - 24px) / 4); /* 3 * 8px gaps = 24px */
+    min-width: 0;                   /* allow calc() to shrink below earlier min-width */
+    min-height: 64px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  /* make numbers readable but compact */
+  .count-number { font-size: 1.2rem !important; margin-bottom: 6px; }
+  .count-label  { font-size: 0.65rem !important; letter-spacing: 0.06em; }
+}
+
+/* Very small phones (<=320px) — 2x2 grid so boxes don't become unreadably tiny */
+@media (max-width: 320px) {
+  .hero-countdown-mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    justify-items: center;
+  }
+
+  .hero-countdown-mobile .count-box {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    padding: 8px;
+  }
+
+  .count-number { font-size: 1.05rem !important; }
+  .count-label  { font-size: 0.62rem !important; }
 }
 
 /* Align right-column to visually sit at the right of the slider */
@@ -145,46 +194,48 @@
   align-items: center;
   justify-content: flex-end;
 }
-          .footer-sticker {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #0056b3;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            font-family: 'Arial', sans-serif;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-        .footer-sticker h4 {
-            margin: 0;
-            font-size: 1.5em;
-            font-weight: 900;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 2px solid white;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-        .sales-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 5px;
-        }
-        .sales-grid p {
-            margin: 0;
-            font-size: 1em;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 0.5px;
-        }
+
+/* Footer sticker + sales grid kept unchanged */
+.footer-sticker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.footer-sticker h4 {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 2px solid white;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+.sales-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 5px;
+}
+.sales-grid p {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+}
 </style>
 
 
@@ -1054,13 +1105,20 @@
     </footer>
 
 
-    <footer class="footer-sticker">
-        <h4>Pre-Order Sales</h4>
-        <div class="sales-grid">
-            <p>Soft Copy Sold 0</p>
-            <p>Hard Copy Sold 0</p>
-        </div>
-    </footer>
+   <footer class="footer-sticker">
+  <h4>Pre-Order Sales</h4>
+  <div class="sales-grid">
+    <div>
+      <p>Soft Copy</p>
+      <p>0 sold</p>
+    </div>
+    <div>
+      <p>Hard Copy</p>
+      <p>0 sold</p>
+    </div>
+  </div>
+</footer>
+
 
 
 
