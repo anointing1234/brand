@@ -20,11 +20,11 @@ from django.conf import settings
 
 
 logger = logging.getLogger(__name__)
-# Initialize Paystack
-paystack = Paystack(settings.PAYSTACK_SECRET_KEY)
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html',{
+        'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY
+    })
 
 def contact(request):
     return render(request, 'contact-us.html')
