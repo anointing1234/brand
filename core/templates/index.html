@@ -237,7 +237,90 @@
   letter-spacing: 0.5px;
 }
 
+.notification-container {
+            position: fixed;
+            top: 20px; /* Changed to top-right */
+            right: 20px;
+            z-index: 2000; /* Higher z-index to appear above footer */
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
+        .notification {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px 15px;
+            max-width: 250px; /* Reduced width */
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(-20px); /* Adjusted for downward slide-in */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            border-left: 4px solid #4CAF50; /* Slightly thinner border */
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification.hide {
+            opacity: 0;
+            transform: translateY(-20px); /* Adjusted for downward slide-out */
+        }
+
+        .notification-icon {
+            font-size: 20px; /* Smaller icon */
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content p {
+            margin: 0;
+            font-size: 12px; /* Smaller font size */
+            line-height: 1.3; /* Tighter line height */
+            color: #333;
+        }
+
+        .notification-content .buyer-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .notification-content .book-type {
+            font-style: italic;
+            color: #555;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 16px; /* Smaller close button */
+            cursor: pointer;
+            color: #aaa;
+            margin-left: 8px;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        /* Animation for fade in/out */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
 </style>
 
 
@@ -1017,6 +1100,75 @@
         </div>
         <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
     </footer>
+
+
+    <!-- Container for notifications -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script>
+        // Array of 10 fictional buyers in Nigeria
+        const buyers = [
+            { name: 'Aisha O.', city: 'Lagos', type: 'Soft Copy', price: '₦80,000' },
+            { name: 'Chinedu E.', city: 'Abuja', type: 'Hard Copy', price: '₦100,000' },
+            { name: 'Fatima A.', city: 'Kano', type: 'Soft Copy', price: '₦80,000' },
+            { name: 'Emeka N.', city: 'Port Harcourt', type: 'Hard Copy', price: '₦100,000' },
+            { name: 'Zainab M.', city: 'Ibadan', type: 'Soft Copy', price: '₦80,000' },
+            { name: 'Olumide S.', city: 'Enugu', type: 'Hard Copy', price: '₦100,000' },
+            { name: 'Hauwa B.', city: 'Kaduna', type: 'Soft Copy', price: '₦80,000' },
+            { name: 'Ifeanyi U.', city: 'Benin City', type: 'Hard Copy', price: '₦100,000' },
+            { name: 'Mariam K.', city: 'Jos', type: 'Soft Copy', price: '₦80,000' },
+            { name: 'Adebayo T.', city: 'Ilorin', type: 'Hard Copy', price: '₦100,000' }
+        ];
+
+        const container = document.getElementById('notificationContainer');
+        let currentIndex = 0;
+
+        // Function to create and show a notification
+        function showNotification() {
+            if (currentIndex >= buyers.length) return; // Stop after all buyers
+
+            const buyer = buyers[currentIndex];
+            const notification = document.createElement('div');
+            notification.classList.add('notification');
+
+            notification.innerHTML = `
+                <span class="notification-icon">🎉</span>
+                <div class="notification-content">
+                    <p><span class="buyer-name">${buyer.name}</span> from ${buyer.city} just purchased</p>
+                    <p class="book-type">"I Am a Brand" - ${buyer.type} for ${buyer.price}</p>
+                </div>
+                <button class="close-btn" onclick="this.parentElement.classList.add('hide'); setTimeout(() => this.parentElement.remove(), 300);">&times;</button>
+            `;
+
+            container.appendChild(notification);
+
+            // Trigger show animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('hide');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300); // Match animation duration
+            }, 5000);
+
+            currentIndex++;
+        }
+
+        // Show notifications one by one every 3 seconds
+        const interval = setInterval(() => {
+            showNotification();
+            if (currentIndex >= buyers.length) {
+                clearInterval(interval);
+            }
+        }, 3000);
+
+        // Initial notification
+        showNotification();
+    </script>
 
 
 
