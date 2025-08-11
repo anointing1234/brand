@@ -42,52 +42,132 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
 
-    <!-- Theme Customization -->
-    <style>
-        :root {
-            --gradient-primary: none;
-            --gradient-primary-hover: none;
-        }
-        /* Ensure spinner is centered */
-        #loading-spinner {
-            margin: 20px 0;
-        }
-        /* Custom styles for countdown pop-up */
-        #countdownModal .modal-content {
-            border-radius: 5px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            background-color: #f8f9fa;
-        }
-        #countdownModal .modal-header {
-            background-color: #0d6dcdff;
+  <!-- Theme Customization -->
+
+  <style>
+:root {
+    --gradient-primary: none;
+    --gradient-primary-hover: none;
+}
+
+/* Ensure spinner is centered */
+#loading-spinner {
+    margin: 20px 0;
+}
+
+/* Hero countdown styles (desktop vertical stack + mobile row) */
+.hero-countdown-desktop {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-end; /* align boxes to the right edge */
+  width: 100%;
+}
+
+.hero-countdown-mobile {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Shared box */
+.count-box {
+  min-width: 120px;
+  padding: 18px 14px;
+  border-radius: 12px;
+  background: rgba(7, 84, 217, 0.85); /* dark green panel */
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  text-align: center;
+  color: #fff;
+}
+
+/* Number + dot under number */
+.count-number {
+  font-size: 2.4rem;
+  font-weight: 800;
+  display: block;
+  line-height: 1;
+  position: relative;
+}
+
+/* small dot under the number (greenish) */
+.count-number::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #96bbffff;
+  border-radius: 50%;
+  margin: 10px auto 6px;
+  box-shadow: 0 0 0 6px rgba(208,255,150,0.06);
+}
+
+/* Label */
+.count-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+}
+
+/* Slightly smaller boxes on small screens */
+@media (max-width: 767.98px) {
+  .count-box { min-width: 84px; padding: 12px; }
+  .count-number { font-size: 1.6rem; }
+}
+
+/* Align right-column to visually sit at the right of the slider */
+.carousel .hero-count-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+          .footer-sticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0056b3;
             color: white;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
-        #countdownModal .modal-title {
-            font-weight: bold;
-            font-size: 1.5rem;
+        .footer-sticker h4 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid white;
+            display: inline-block;
+            padding-bottom: 5px;
         }
-        #countdownModal .modal-body {
-            padding: 2rem;
+        .sales-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 5px;
         }
-        #countdown {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #000000ff; /* Red for urgency */
-            letter-spacing: 2px;
+        .sales-grid p {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
         }
-        #countdownModal .modal-footer {
-            background-color: #e9ecef;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            justify-content: space-between;
-            font-weight: bold;
-        }
-        #countdownModal .modal-footer span {
-            font-size: 1.1rem;
-        }
-    </style>
+</style>
+
+
 
     <!-- Schema Markup for Book -->
     <script type="application/ld+json">
@@ -144,8 +224,8 @@
             <nav class="navbar navbar-expand-lg py-3">
                 <!-- site logo -->
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img class="logo-dark" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="70">
-                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="70">
+                    <img class="logo-dark" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50">
+                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50">
                 </a>
                 <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -182,60 +262,159 @@
     </header>
     <!-- header end -->
 
+
     <!-- hero section -->
-    <section id="home" class="hero-section-3   py-105">
-        <div class="container">
-            <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
-                <div class="carousel-inner">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active">
-                        <div class="row g-5 d-flex justify-content-center align-items-center">
-                            <div class="col-md-6">
-                                <h1 class="display-4 fw-bold my-3">You Are Not Just a Name. You Are a Brand.</h1>
-                                <p class="fs-6 fw-normal">
-                                    Your voice, your value, your story; it all matters.
-                                    <strong>"I Am a Brand"</strong> is your guide to showing up intentionally, leading with clarity, and building a personal brand that opens doors.
-                                </p>
-                                <div class="d-flex align-items-center gap-3 mt-5">
-                                    <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item">
-                        <div class="row g-5 d-flex justify-content-center align-items-center">
-                            <div class="col-md-6">
-                                <h1 class="display-4 fw-bold my-3">The Ultimate Personal Branding Encyclopedia</h1>
-                                <p class="fs-6 fw-normal">
-                                    This book isn’t just a read—it’s a roadmap. <strong>"I Am a Brand"</strong> helps you communicate your value, tell your story, and build influence in business, life, and online.
-                                </p>
-                                <div class="d-flex align-items-center gap-3 mt-5">
-                                    <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Navigation Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
-                    <span class="bi bi-arrow-left fs-3" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
-                    <span class="bi bi-arrow-right fs-3" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+<section id="home" class="hero-section-3 py-5">
+  <div class="container">
+    <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row g-5 align-items-center">
+            <!-- IMAGE first -->
+            <div class="col-lg-4 col-md-6 text-center order-1">
+              <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
             </div>
+
+            <!-- TEXT (middle) -->
+            <div class="col-lg-5 col-md-6 order-2">
+              <h1 class="display-4 fw-bold my-3">You Are Not Just a Name. You Are a Brand.</h1>
+              <p class="fs-6 fw-normal">
+                Your voice, your value, your story; it all matters.
+                <strong>"I Am a Brand"</strong> is your guide to showing up intentionally, leading with clarity, and building a personal brand that opens doors.
+              </p>
+
+                         <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
+                                <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
+                            </div>
+
+              <!-- MOBILE countdown: visible only on small screens, directly under the button -->
+              <div class="hero-countdown-mobile d-lg-none mt-4">
+                <div class="count-box">
+                  <span class="count-number cd-days">00</span>
+                  <span class="count-label">Days</span>
+                </div>
+                <div class="count-box">
+                  <span class="count-number cd-hours">00</span>
+                  <span class="count-label">Hours</span>
+                </div>
+                <div class="count-box">
+                  <span class="count-number cd-minutes">00</span>
+                  <span class="count-label">Minutes</span>
+                </div>
+                <div class="count-box">
+                  <span class="count-number cd-seconds">00</span>
+                  <span class="count-label">Seconds</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DESKTOP countdown: vertical stack on the right -->
+            <div class="col-lg-3 d-none d-lg-flex order-3">
+              <div class="hero-count-wrapper w-100">
+                <div class="hero-countdown-desktop me-3">
+                  <div class="count-box">
+                    <span class="count-number cd-days">00</span>
+                    <span class="count-label">Days</span>
+                  </div>
+                  <div class="count-box">
+                    <span class="count-number cd-hours">00</span>
+                    <span class="count-label">Hours</span>
+                  </div>
+                  <div class="count-box">
+                    <span class="count-number cd-minutes">00</span>
+                    <span class="count-label">Minutes</span>
+                  </div>
+                  <div class="count-box">
+                    <span class="count-number cd-seconds">00</span>
+                    <span class="count-label">Seconds</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-    <!-- hero section end -->
+
+        <!-- Slide 2 (same pattern) -->
+        <div class="carousel-item">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-4 col-md-6 text-center order-1">
+              <img class="img-fluid" src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand book cover">
+            </div>
+
+            <div class="col-lg-5 col-md-6 order-2">
+              <h1 class="display-4 fw-bold my-3">The Ultimate Personal Branding Encyclopedia</h1>
+              <p class="fs-6 fw-normal">
+                This book isn’t just a read—it’s a roadmap. <strong>"I Am a Brand"</strong> helps you communicate your value, tell your story, and build influence in business, life, and online.
+              </p>
+                            <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4 mb-5">
+                                <a href="preorder.html" class="btn btn-dark rounded-pill">Pre-order Now</a>
+                            </div>
+
+              <!-- MOBILE countdown for slide 2 -->
+              <div class="hero-countdown-mobile d-lg-none mt-4">
+                <div class="count-box">
+                  <span class="count-number cd-days">00</span>
+                  <span class="count-label">Days</span>
+                </div>
+                <div class="count-box">
+                  <span class="count-number cd-hours">00</span>
+                  <span class="count-label">Hours</span>
+                </div>
+                <div class="count-box">
+                  <span class="count-number cd-minutes">00</span>
+                  <span class="count-label">Minutes</span>
+                </div>
+                <div class="count-box">
+                  <span class="count-number cd-seconds">00</span>
+                  <span class="count-label">Seconds</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 d-none d-lg-flex order-3">
+              <div class="hero-count-wrapper w-100">
+                <div class="hero-countdown-desktop me-3">
+                  <div class="count-box">
+                    <span class="count-number cd-days">00</span>
+                    <span class="count-label">Days</span>
+                  </div>
+                  <div class="count-box">
+                    <span class="count-number cd-hours">00</span>
+                    <span class="count-label">Hours</span>
+                  </div>
+                  <div class="count-box">
+                    <span class="count-number cd-minutes">00</span>
+                    <span class="count-label">Minutes</span>
+                  </div>
+                  <div class="count-box">
+                    <span class="count-number cd-seconds">00</span>
+                    <span class="count-label">Seconds</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+        <span class="bi bi-arrow-left fs-3" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+        <span class="bi bi-arrow-right fs-3" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+<!-- hero section end -->
+
 
     <div class="hero-section-2-feature p-3 d-flex justify-content-center align-items-center">
         <h3 class="text-white">
@@ -571,9 +750,12 @@
                             </ul>
                         </div>
                    <!-- Ebook Button -->
-                    <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
+                    {% comment %} <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
                             data-price="57500"
                             data-plan="Ebook/PDF">
+                    Get it now
+                    </button> {% endcomment %}
+                      <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 ">
                     Get it now
                     </button>
                     </div>
@@ -598,9 +780,12 @@
                             </ul>
                         </div>
                       <!-- Printed Button -->
-                    <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
+                    {% comment %} <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 pay-btn"
                             data-price="100000"
                             data-plan="Printed Copy">
+                    Get it now
+                    </button> {% endcomment %}
+                      <button class="btn btn-dark w-100 rounded-pill btn-pricing-2 ">
                     Get it now
                     </button>
                                         </div>
@@ -708,24 +893,18 @@
         <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
     </footer>
 
-    <!-- Countdown Pop-up Modal -->
-    <div class="modal fade" id="countdownModal" tabindex="-1" aria-labelledby="countdownModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="countdownModalLabel">Countdown to Pre-Order</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <div id="countdown"></div>
-          </div>
-          <div class="modal-footer d-flex justify-content-between">
-            <span>Sold: 0</span>
-            <span>Ordered: 0</span>
-          </div>
+
+    <footer class="footer-sticker">
+        <h4>Pre-Order Sales</h4>
+        <div class="sales-grid">
+            <p>Soft Copy Sold 0</p>
+            <p>Hard Copy Sold 0</p>
         </div>
-      </div>
-    </div>
+    </footer>
+
+
+
+
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -952,46 +1131,53 @@
   }
 </script>
 
+
 <script>
-  // Countdown Pop-up Logic
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize and show the modal on page load
-    const countdownModal = new bootstrap.Modal(document.getElementById('countdownModal'), {
-      backdrop: 'static', // Prevent closing by clicking outside
-      keyboard: false     // Prevent closing with ESC key (optional)
+document.addEventListener('DOMContentLoaded', function () {
+  // target date
+  const countDownDate = new Date("September 6, 2025 00:00:00").getTime();
+
+  function updateAllCounters(days, hours, minutes, seconds) {
+    // update by class for hero (multiple occurrences; mobile & desktop)
+    document.querySelectorAll('.cd-days').forEach(el => el.textContent = days);
+    document.querySelectorAll('.cd-hours').forEach(el => el.textContent = hours);
+    document.querySelectorAll('.cd-minutes').forEach(el => el.textContent = minutes);
+    document.querySelectorAll('.cd-seconds').forEach(el => el.textContent = seconds);
+
+    // Also keep backward compatibility with modal ids if you have them
+    const ids = ['days','hours','minutes','seconds'];
+    const values = [days, hours, minutes, seconds];
+    ids.forEach((id, idx) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = values[idx];
     });
-    countdownModal.show();
+  }
 
-    // Set the countdown target date (September 6, 2025, 00:00:00)
-    const countDownDate = new Date("September 6, 2025 00:00:00").getTime();
+  function tick() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
 
-    // Update the countdown every second
-    const countdownInterval = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = countDownDate - now;
+    if (distance <= 0) {
+      updateAllCounters("00","00","00","00");
+      return;
+    }
 
-      // Calculate days, hours, minutes, seconds
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2,'0');
+    const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2,'0');
+    const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2,'0');
+    const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2,'0');
 
-      // Display the countdown
-      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    updateAllCounters(days, hours, minutes, seconds);
+  }
 
-      // If the countdown is over
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "Pre-Order is Live!";
-      }
-    }, 1000);
-  });
+  // run once immediately then every second
+  tick();
+  setInterval(tick, 1000);
+});
 </script>
 
 
-
-
-    <!-- Email Modal -->
+<!-- Email Modal -->
 <div class="modal fade" id="emailModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content p-4">

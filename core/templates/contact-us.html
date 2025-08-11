@@ -52,6 +52,47 @@
         #loading-spinner {
             margin: 20px 0;
         }
+
+        .footer-sticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .footer-sticker h4 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid white;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .sales-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .sales-grid p {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
     </style>
 
     <!-- Schema Markup for Book -->
@@ -309,6 +350,16 @@
         <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
     </footer>
     <!-- footer section end -->
+
+    
+    <footer class="footer-sticker">
+        <h4>Pre-Order Sales</h4>
+        <div class="sales-grid">
+            <p>Soft Copy Sold 0</p>
+            <p>Hard Copy Sold 0</p>
+        </div>
+    </footer>
+
     <!-- load scripts -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/jquery.waypoints.min.js"></script>
