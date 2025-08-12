@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 from django.conf import settings
+from .models import SalesCounter
 
 
 
@@ -33,32 +34,61 @@ def contact(request):
 
 def process_payment(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        email = data.get('email')
-        plan = data.get('plan')
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+            plan = data.get('plan')
 
-        # Format message
-        message = f"""
-        📚 NEW BOOK ORDER – I Am a Brand
+            # Admin notification email
+            admin_message = f"""
+            📚 NEW BOOK ORDER – I Am a Brand
 
-        🔹 Email Address: {email}
-        🔹 Selected Plan: {plan}
+            🔹 Email Address: {email}
+            🔹 Selected Plan: {plan}
 
-        Please follow up with this customer for confirmation and delivery.
+            Please follow up with this customer for confirmation and delivery.
 
-        Regards,
-        I Am a Brand Website
-        """
+            Regards,
+            I Am a Brand Website
+            """
+            send_mail(
+                subject='📘 New Book Order – I Am a Brand',
+                message=admin_message,
+                from_email=settings.ADMIN_EMAIL,
+                recipient_list=[settings.ADMIN_EMAIL],
+                fail_silently=False,
+            )
 
-        send_mail(
-            subject='📘 New Book Order – I Am a Brand',
-            message=message,
-            from_email=settings.ADMIN_EMAIL,
-            recipient_list=[settings.ADMIN_EMAIL],
-            fail_silently=False,
-        )
+            # Customer confirmation email
+            customer_message = f"""
+            Dear Customer,
 
-        return JsonResponse({'status': 'success'})
+            Thank you for ordering "I Am a Brand"!
+
+            🔹 Order Details:
+            - Plan: {plan.title()} Copy
+            - Email: {email}
+
+            {'You will receive a download link for your soft copy soon.' if plan == 'soft' else 'Your hard copy will be prepared for shipping. We will contact you soon with delivery details.'}
+
+            If you have any questions, please contact us at {settings.ADMIN_EMAIL}.
+
+            Best regards,
+            I Am a Brand Team
+            """
+            send_mail(
+                subject='📘 Your Order Confirmation – I Am a Brand',
+                message=customer_message,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[email],
+                fail_silently=False,
+            )
+
+            return JsonResponse({'status': 'payment_processed'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
 
     
 def send_contact_message(request):
@@ -101,3 +131,35 @@ def send_contact_message(request):
 
 def blog_view(request):
     return render(request,'blog.html')
+
+
+
+def get_sales_data(request):
+    # Fetch the sales counter record (assuming there's only one; create if it doesn't exist)
+    sales = SalesCounter.objects.first()
+    if not sales:
+        sales = SalesCounter(soft_copy_sold=0, hard_copy_sold=10)
+        sales.save()
+    return JsonResponse({
+        'softCopySold': sales.soft_copy_sold,
+        'hardCopySold': sales.hard_copy_sold
+    })
+
+
+
+
+def update_sales(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            sales = SalesCounter.objects.first()
+            if not sales:
+                sales = SalesCounter(soft_copy_sold=0, hard_copy_sold=10)
+            # Update the fields with the new values from the JS payload
+            sales.soft_copy_sold = data.get('softCopySold', sales.soft_copy_sold)
+            sales.hard_copy_sold = data.get('hardCopySold', sales.hard_copy_sold)
+            sales.save()
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)

@@ -946,15 +946,13 @@
                                 <div class="col-md-6">
                                     <h5 class="fs-2 pb-2">Ebook/PDF</h5>
                                     <p class="fw-normal">Digital Download</p>
-                                    <h5 class="fw-bold">$52.25 / ₦80,000</h5>
+                                    <h5 class="fw-bold">$50 / ₦80,000</h5>
                                 </div>
                             </div>
                             <p class="pb-3 fw-normal">Download the ebook version in PDF format.</p>
                             <ul class="pricing-features list-unstyled price-border px-2 pt-3 mb-0">
-                                <li><div class="d-flex justify-content-between align-items-center"><span>PDF Format</span><i class="fs-4 bi bi-check"></i></div></li>
-                                <li><div class="d-flex justify-content-between align-items-center"><span>Ebook Format</span><i class="fs-4 bi bi-check"></i></div></li>
-                                <li><div class="d-flex justify-content-between align-items-center"><span>Hard Copy</span><i class="fs-4 bi bi-x"></i></div></li>
-                                <li><div class="d-flex justify-content-between align-items-center"><span>Audio Book</span><i class="fs-4 bi bi-x"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Book Pdf Format</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Workbook Pdf Format</span><i class="fs-4 bi bi-check"></i></div></li>
                             </ul>
                         </div>
                    <!-- Ebook Button -->
@@ -981,10 +979,8 @@
                             </div>
                             <p class="pb-3 fw-normal">Get the printed version of the book</p>
                             <ul class="pricing-features list-unstyled price-border px-2 pt-3 mb-0">
-                                <li><div class="d-flex justify-content-between align-items-center"><span>PDF Format</span><i class="fs-4 bi bi-check"></i></div></li>
-                                <li><div class="d-flex justify-content-between align-items-center"><span>Ebook Format</span><i class="fs-4 bi bi-check"></i></div></li>
-                                <li><div class="d-flex justify-content-between align-items-center"><span>Hard Copy</span><i class="fs-4 bi bi-check"></i></div></li>
-                                <li><div class="d-flex justify-content-between align-items-center"><span>Audio Book</span><i class="fs-4 bi bi-x"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Hard Book Format</span><i class="fs-4 bi bi-check"></i></div></li>
+                                <li><div class="d-flex justify-content-between align-items-center"><span>Wordbook Format</span><i class="fs-4 bi bi-x"></i></div></li>
                             </ul>
                         </div>
                       <!-- Printed Button -->
@@ -1101,74 +1097,6 @@
         <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
     </footer>
 
-
-    <!-- Container for notifications -->
-    <div class="notification-container" id="notificationContainer"></div>
-
-    <script>
-        // Array of 10 fictional buyers in Nigeria
-        const buyers = [
-            { name: 'Aisha O.', city: 'Lagos', type: 'Soft Copy', price: '₦80,000' },
-            { name: 'Chinedu E.', city: 'Abuja', type: 'Hard Copy', price: '₦100,000' },
-            { name: 'Fatima A.', city: 'Kano', type: 'Soft Copy', price: '₦80,000' },
-            { name: 'Emeka N.', city: 'Port Harcourt', type: 'Hard Copy', price: '₦100,000' },
-            { name: 'Zainab M.', city: 'Ibadan', type: 'Soft Copy', price: '₦80,000' },
-            { name: 'Olumide S.', city: 'Enugu', type: 'Hard Copy', price: '₦100,000' },
-            { name: 'Hauwa B.', city: 'Kaduna', type: 'Soft Copy', price: '₦80,000' },
-            { name: 'Ifeanyi U.', city: 'Benin City', type: 'Hard Copy', price: '₦100,000' },
-            { name: 'Mariam K.', city: 'Jos', type: 'Soft Copy', price: '₦80,000' },
-            { name: 'Adebayo T.', city: 'Ilorin', type: 'Hard Copy', price: '₦100,000' }
-        ];
-
-        const container = document.getElementById('notificationContainer');
-        let currentIndex = 0;
-
-        // Function to create and show a notification
-        function showNotification() {
-            if (currentIndex >= buyers.length) return; // Stop after all buyers
-
-            const buyer = buyers[currentIndex];
-            const notification = document.createElement('div');
-            notification.classList.add('notification');
-
-            notification.innerHTML = `
-                <span class="notification-icon">🎉</span>
-                <div class="notification-content">
-                    <p><span class="buyer-name">${buyer.name}</span> from ${buyer.city} just purchased</p>
-                    <p class="book-type">"I Am a Brand" - ${buyer.type} for ${buyer.price}</p>
-                </div>
-                <button class="close-btn" onclick="this.parentElement.classList.add('hide'); setTimeout(() => this.parentElement.remove(), 300);">&times;</button>
-            `;
-
-            container.appendChild(notification);
-
-            // Trigger show animation
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                notification.classList.add('hide');
-                setTimeout(() => {
-                    notification.remove();
-                }, 300); // Match animation duration
-            }, 5000);
-
-            currentIndex++;
-        }
-
-        // Show notifications one by one every 3 seconds
-        const interval = setInterval(() => {
-            showNotification();
-            if (currentIndex >= buyers.length) {
-                clearInterval(interval);
-            }
-        }, 3000);
-
-        // Initial notification
-        showNotification();
-    </script>
 
 
 
@@ -1349,7 +1277,8 @@
  {% endcomment %}
 
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
+
+ <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   let selectedPlan = "";
   let selectedPrice = 0;
@@ -1358,28 +1287,40 @@
   document.addEventListener("DOMContentLoaded", () => {
     const modalElement = document.getElementById('emailModal');
     emailModalInstance = new bootstrap.Modal(modalElement, {});
-  });
 
-  document.querySelectorAll('.pay-btn').forEach(button => {
-    button.addEventListener('click', function () {
-      selectedPlan = this.getAttribute('data-plan');
-      selectedPrice = this.getAttribute('data-price');
+    // Fetch initial sales data
+    fetch('/api/sales-data/')
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector('.sales-grid div:nth-child(1) .blink').textContent = data.softCopySold;
+        document.querySelector('.sales-grid div:nth-child(2) .blink').textContent = data.hardCopySold;
+      })
+      .catch(error => console.error('Error fetching sales data:', error));
 
-      // Show spinner before modal
-      document.getElementById('spinnerOverlay').style.display = 'flex';
+    // Set up pay buttons
+    document.querySelectorAll('.pay-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        selectedPlan = this.getAttribute('data-plan');
+        selectedPrice = this.getAttribute('data-price');
 
-      setTimeout(() => {
-        document.getElementById('spinnerOverlay').style.display = 'none';
-        emailModalInstance.show();
-      }, 1000);
+        document.getElementById('spinnerOverlay').style.display = 'flex';
+
+        setTimeout(() => {
+          document.getElementById('spinnerOverlay').style.display = 'none';
+          emailModalInstance.show();
+        }, 1000);
+      });
     });
   });
 
   function startPayment() {
     const email = document.getElementById('userEmail').value.trim();
-    if (!email) return alert("Please enter a valid email.");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
-    // Hide modal and show spinner
     emailModalInstance.hide();
     document.getElementById('spinnerOverlay').style.display = 'flex';
 
@@ -1400,8 +1341,43 @@
             plan: selectedPlan
           })
         })
-        .then(() => {
+        .then(response => {
+          if (!response.ok) throw new Error('Payment processing failed');
+          // Update local counters
+          const softCopyElement = document.querySelector('.sales-grid div:nth-child(1) .blink');
+          const hardCopyElement = document.querySelector('.sales-grid div:nth-child(2) .blink');
+          let softCopySold = parseInt(softCopyElement.textContent);
+          let hardCopySold = parseInt(hardCopyElement.textContent);
+
+          if (selectedPlan === 'soft') {
+            softCopySold += 1;
+            softCopyElement.textContent = softCopySold;
+          } else if (selectedPlan === 'hard') {
+            hardCopySold += 1;
+            hardCopyElement.textContent = hardCopySold;
+          }
+
+          // Update backend
+          return fetch('/api/update-sales/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({
+              softCopySold: softCopySold,
+              hardCopySold: hardCopySold
+            })
+          });
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to update sales data');
           window.location.href = "/payment-success/";
+        })
+        .catch(error => {
+          document.getElementById('spinnerOverlay').style.display = 'none';
+          alert("Error processing payment or updating sales. Please try again.");
+          console.error(error);
         });
       },
       onClose: function () {
@@ -1413,7 +1389,6 @@
     handler.openIframe();
   }
 
-  // CSRF Token helper for Django
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
@@ -1429,7 +1404,6 @@
     return cookieValue;
   }
 </script>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
