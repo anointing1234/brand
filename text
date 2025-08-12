@@ -1,0 +1,8 @@
+
+
+
+DB_NAME=railway
+DB_USER=postgres
+DB_PASSWORD=ZeHMKVnqpeImfydacJrBCGyCTZeyNbdL
+DB_HOST=nozomi.proxy.rlwy.net
+DB_PORT=40023
