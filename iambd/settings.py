@@ -41,11 +41,6 @@ ALLOWED_HOSTS = ["iamabrandthebook.com"]
 CSRF_TRUSTED_ORIGINS = ["http://iamabrandthebook.com"]
 
 
-
-
-
-# Application definition
-
 # AUTH_USER_MODEL = 'accounts.CustomUser'
 
 INSTALLED_APPS = [

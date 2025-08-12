@@ -144,50 +144,49 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
-    <!-- header -->
-    <header id="navbar_top" class="bg-white">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg py-3">
-                <!-- site logo -->
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <img class="logo-dark" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="70">
-                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="70">
-                </a>
-                <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- nav menu -->
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}#chapters">Chapter</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}#newsletter">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
-                        </li>
-                    </ul>
-                          
-                    <a class="btn btn-primary rounded-pill text-white" href="{% url 'contact' %}">Buy Now Book</a>
-                </div>
-                <div class="header-seperator"></div>
-            </nav>
-        </div>
-    </header>
-    <!-- header end -->
+    
+  <!-- header -->
+<header id="navbar_top" class="bg-primary text-white ">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg py-3">
+            <!-- site logo -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img class="logo-dark" src="{% static 'assets/images/logo_white.png' %}" alt="Site Logo" width="60">
+                <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50">
+            </a>
+            <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link  " aria-current="page" href="{% url 'home' %}#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'home' %}#chapters">Chapter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+                <a class="btn btn-light rounded-pill text-dark" href="#buy">Buy Now Book</a>
+            </div>
+            <div class="header-seperator"></div>
+        </nav>
+    </div>
+</header>
+<!-- header end -->
 
     <!-- header banner -->
     <section class="header-banner bookpress-parallax" id="header-banner-id">
@@ -284,10 +283,10 @@
 
 
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d912.761870194122!2d90.39311262919475!3d23.781323499035885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf77daa84fc7%3A0x692dea87e598933b!2sSenseFlame!5e0!3m2!1sen!2sbd!4v1650528406743!5m2!1sen!2sbd"
-                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade" class="py-4">
-                </iframe>
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d912.761870194122!2d5.6037!3d6.3350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d374a0a3d619%3A0x4a238265970f96a3!2sBenin%20City%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1650528406743!5m2!1sen!2sng"
+    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade" class="py-4">
+</iframe>
             </div>
         </div>
     </section>
