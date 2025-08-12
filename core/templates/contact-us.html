@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,36 +7,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta -->
-    <meta name="description" content="Discover 'I Am a Brand,' the ultimate personal branding book by Kevwe Modupe. Learn to build, position, and monetize your personal brand with practical strategies for entrepreneurs, professionals, and creatives in Nigeria and beyond.">
-    <meta name="keywords" content="personal branding, personal branding Nigeria, branding book Nigeria, Kevwe Modupe, I Am a Brand book, entrepreneurship, self-branding, personal branding guide, TSLNigeria branding, brand strategy, Nigerian entrepreneur, build personal brand, branding tips, digital branding Nigeria, storytelling, creative directing">
+    <meta name="description" content="Contact Kevwe Modupe, author of 'I Am a Brand,' for inquiries about personal branding, book pre-orders, or speaking engagements in Nigeria and beyond.">
+    <meta name="keywords" content="contact Kevwe Modupe, I Am a Brand book, personal branding Nigeria, TSLNigeria contact, Nigerian entrepreneur, branding book inquiries, book author contact">
     <meta name="author" content="Kevwe Modupe">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph (for social sharing) -->
-    <meta property="og:title" content="I Am a Brand | Personal Branding Encyclopedia by Kevwe Modupe">
-    <meta property="og:description" content="Master your personal brand with 'I Am a Brand' by Kevwe Modupe. Pre-order now to unlock strategies for building influence and success in Nigeria and globally.">
+    <meta property="og:title" content="Contact | I Am a Brand by Kevwe Modupe">
+    <meta property="og:description" content="Get in touch with Kevwe Modupe for questions about 'I Am a Brand,' personal branding, or speaking opportunities.">
     <meta property="og:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://iamabrandthebook.com">
+    <meta property="og:url" content="https://iamabrandthebook.com/contact">
     <meta property="og:site_name" content="I Am a Brand">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="I Am a Brand | Personal Branding Encyclopedia">
-    <meta name="twitter:description" content="Master your personal brand with Kevwe Modupe’s book. Pre-order now for actionable branding strategies.">
+    <meta name="twitter:title" content="Contact | I Am a Brand by Kevwe Modupe">
+    <meta name="twitter:description" content="Reach out to Kevwe Modupe, author of 'I Am a Brand,' for book inquiries or branding advice.">
     <meta name="twitter:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
 
+    <!-- Enhanced Book Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "I Am a Brand",
+        "author": {
+            "@type": "Person",
+            "name": "Kevwe Modupe",
+            "sameAs": "https://kevwemodupe.com"
+        },
+        "description": "I Am a Brand is a personal branding encyclopedia by Kevwe Modupe, offering practical strategies to build, position, and monetize your personal brand for entrepreneurs, professionals, and creatives in Nigeria and beyond.",
+        "image": "{% static 'assets/images/index2/book-image-main.png' %}",
+        "url": "https://iamabrandthebook.com",
+        "isbn": "978-1234567890",
+        "inLanguage": "en",
+        "datePublished": "2025-09-06",
+        "publisher": {
+            "@type": "Organization",
+            "name": "TSLNigeria",
+            "sameAs": "https://tslnigeria.com"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "4"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "50",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/EBook"
+                },
+                "seller": {
+                    "@type": "Organization",
+                    "name": "TSLNigeria"
+                }
+            },
+            {
+                "@type": "Offer",
+                "price": "70",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/Hardcover"
+                },
+                "seller": {
+                    "@type": "Organization",
+                    "name": "TSLNigeria"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Organization Schema for TSLNigeria -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TSLNigeria",
+        "url": "https://tslnigeria.com",
+        "logo": "{% static 'assets/images/logo.png' %}",
+        "description": "TSLNigeria is a digital and branding company empowering African startups with global visibility, led by Kevwe Modupe.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1, Suite 24 & 25, Comfort Shopping Plaza,",
+            "addressLocality": "Benin City",
+            "addressRegion": "Edo",
+            "postalCode": "300001",
+            "addressCountry": "NG"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 6.3350,
+            "longitude": 5.6037
+        },
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "+234-810-123-4567",
+                "email": "info@iamabrandthebook.com",
+                "contactType": "Customer Service",
+                "areaServed": "NG",
+                "availableLanguage": "English"
+            }
+        ],
+        "sameAs": [
+            "https://facebook.com/tslnigeria",
+            "https://x.com/tslnigeria",
+            "https://linkedin.com/company/tslnigeria",
+            "https://instagram.com/tslnigeria"
+        ]
+    }
+    </script>
+
+    <!-- WebPage Schema for Contact Page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Contact I Am a Brand",
+        "url": "https://iamabrandthebook.com/contact",
+        "description": "Contact Kevwe Modupe, author of 'I Am a Brand,' for inquiries about personal branding, book pre-orders, or speaking engagements in Nigeria and beyond.",
+        "mainEntity": {
+            "@type": "ContactPoint",
+            "telephone": "+234-810-123-4567",
+            "email": "info@iamabrandthebook.com",
+            "contactType": "Customer Service"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://iamabrandthebook.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Contact",
+                    "item": "https://iamabrandthebook.com/contact"
+                }
+            ]
+        }
+    }
+    </script>
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
-    <link href="{% static 'assets/css/fontawesome/fontawesome.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/fontawesome/brands.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons.min.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" defer>
+    <link href="{% static 'assets/css/fontawesome/fontawesome.css' %}" rel="stylesheet" defer>
+    <link href="{% static 'assets/css/fontawesome/brands.css' %}" rel="stylesheet" defer>
+    <link href="{% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" defer>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" defer>
     <!-- AOS CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" defer>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
@@ -95,100 +229,55 @@
         }
     </style>
 
-    <!-- Schema Markup for Book -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Book",
-        "name": "I Am a Brand",
-        "author": {
-            "@type": "Person",
-            "name": "Kevwe Modupe",
-            "sameAs": "https://kevwemodupe.com"
-        },
-        "description": "I Am a Brand is a personal branding encyclopedia by Kevwe Modupe, offering practical strategies to build, position, and monetize your personal brand for entrepreneurs, professionals, and creatives.",
-        "image": "{% static 'assets/images/index2/book-image-main.png' %}",
-        "url": "https://iamabrandthebook.com",
-        "isbn": "978-1234567890",
-        "inLanguage": "en",
-        "publisher": {
-            "@type": "Organization",
-            "name": "TSLNigeria"
-        },
-        "offers": [
-            {
-                "@type": "Offer",
-                "price": "50",
-                "priceCurrency": "USD",
-                "availability": "https://schema.org/InStock",
-                "itemOffered": {
-                    "@type": "Book",
-                    "bookFormat": "https://schema.org/EBook"
-                }
-            },
-            {
-                "@type": "Offer",
-                "price": "70",
-                "priceCurrency": "USD",
-                "availability": "https://schema.org/InStock",
-                "itemOffered": {
-                    "@type": "Book",
-                    "bookFormat": "https://schema.org/Hardcover"
-                }
-            }
-        ]
-    }
-    </script>
-
-    <title>I Am a Brand | Personal Branding Encyclopedia by Kevwe Modupe</title>
+    <title>Contact | I Am a Brand by Kevwe Modupe</title>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
     
-  <!-- header -->
-<header id="navbar_top" class="bg-primary text-white ">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg py-3">
-            <!-- site logo -->
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img class="logo-dark" src="{% static 'assets/images/logo_white.png' %}" alt="Site Logo" width="60">
-                <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50">
-            </a>
-            <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link  " aria-current="page" href="{% url 'home' %}#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'home' %}#chapters">Chapter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                </ul>
-                <a class="btn btn-light rounded-pill text-dark" href="#buy">Buy Now Book</a>
-            </div>
-            <div class="header-seperator"></div>
-        </nav>
-    </div>
-</header>
-<!-- header end -->
+    <!-- Header -->
+    <header id="navbar_top" class="bg-primary text-white fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg py-3">
+                <!-- Site logo -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img class="logo-dark" src="{% static 'assets/images/logo_white.png' %}" alt="Site Logo" width="60" loading="lazy">
+                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50" loading="lazy">
+                </a>
+                <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#chapters">Chapter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-light rounded-pill text-dark" href="#buy">Buy Now Book</a>
+                </div>
+                <div class="header-seperator"></div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header end -->
 
-    <!-- header banner -->
+    <!-- Header banner -->
     <section class="header-banner bookpress-parallax" id="header-banner-id">
         <div class="container d-flex justify-content-between align-items-center text-white">
             <div class="overlay-out">
@@ -197,22 +286,22 @@
                     <a href="{% url 'contact' %}" class="text-decoration-none text-white">Contact</a>
                 </p>
             </div>
-            <img style="width: 150px; height: 150px;" src="{% static 'assets/images/index2/book-image-main.png' %}" class="img-fluid" alt="Books">
+            <img style="width: 150px; height: 150px;" src="{% static 'assets/images/index2/book-image-main.png' %}" class="img-fluid" alt="I Am a Brand Book Cover" loading="lazy">
             <div class="parallax start-0 top-0 w-100 h-100"></div>
         </div>
-    </section><!-- header banner end -->
+    </section>
+    <!-- Header banner end -->
 
-    <!-- contact section  -->
+    <!-- Contact section -->
     <section class="contact-section py-5">
         <div class="container">
-
-            <!-- feature group -->
+            <!-- Feature group -->
             <div>
                 <div class="row row-cols-1 row-cols-md-3 gx-3 gy-4 pt-3 pb-5 mt-100 features feature-group-contact">
                     <div class="col">
                         <div class="text-center px-5 mb-4 mb-md-0">
                             <div class="feature-icon feature-primary mx-auto mb-4">
-                                <img src="{% static 'assets/images/icon-1.svg' %}" alt="Feature Icon">
+                                <img src="{% static 'assets/images/icon-1.svg' %}" alt="Email Icon" loading="lazy">
                             </div>
                             <div>
                                 <h3>Email Address</h3>
@@ -225,68 +314,65 @@
                     <div class="col">
                         <div class="text-center px-5 mb-4 mb-md-0">
                             <div class="feature-icon feature-primary mx-auto mb-4">
-                                <img src="{% static 'assets/images/icon-2.svg' %}" alt="Feature Icon">
+                                <img src="{% static 'assets/images/icon-2.svg' %}" alt="Phone Icon" loading="lazy">
                             </div>
                             <div>
                                 <h3>Phone Number</h3>
-                                <p class="feature-group-p pt-2">+234 810 123 4567
-                                </p>
+                                <p class="feature-group-p pt-2">+234 810 123 4567</p>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="text-center px-5">
                             <div class="feature-icon feature-primary mx-auto mb-4">
-                                <img src="{% static 'assets/images/icon-3.svg' %}" alt="Feature Icon">
+                                <img src="{% static 'assets/images/icon-3.svg' %}" alt="Location Icon" loading="lazy">
                             </div>
                             <div>
                                 <h3>Our Location</h3>
                                 <p class="feature-group-p pt-2">
-                                    <span class="d-block">Nigeria </span>
+                                    <span class="d-block">Nigeria</span>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div><!-- End .feature-section -->
+            </div>
+            <!-- End .feature-section -->
 
             <div class="row contact gx-5 p-2 my-5">
-<form id="contactForm" class="mt-5">
-  <div class="row row-cols-1 row-cols-md-2 gx-5">
-    <div class="col">
-      <div class="mb-3">
-        <label for="name" class="form-label">Your Full Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Your Email Address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-      </div>
-      <div class="mb-3">
-        <label for="phone" class="form-label">Your Phone Number</label>
-        <input type="text" class="form-control" id="phone" placeholder="Enter your number" required>
-      </div>
-      <div class="my-5">
-        <h5>* Have confidence. We won't spam your inbox.</h5>
-      </div>
-    </div>
-
-    <div class="col">
-      <label for="message" class="form-label">Your Message</label>
-      <textarea id="message" class="form-control" placeholder="Enter your message" rows="16" required></textarea>
-      <div class="pt-4">
-        <button type="submit" class="btn btn-primary">Send Book Author</button>
-      </div>
-    </div>
-  </div>
-</form>
-
-
+                <form id="contactForm" class="mt-5">
+                    <div class="row row-cols-1 row-cols-md-2 gx-5">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Full Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Your Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Your Phone Number</label>
+                                <input type="text" class="form-control" id="phone" placeholder="Enter your number" required>
+                            </div>
+                            <div class="my-5">
+                                <h5>* Have confidence. We won't spam your inbox.</h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea id="message" class="form-control" placeholder="Enter your message" rows="16" required></textarea>
+                            <div class="pt-4">
+                                <button type="submit" class="btn btn-primary">Send Book Author</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d912.761870194122!2d5.6037!3d6.3350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d374a0a3d619%3A0x4a238265970f96a3!2sBenin%20City%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1650528406743!5m2!1sen!2sng"
-    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade" class="py-4">
-</iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d912.761870194122!2d5.6037!3d6.3350!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1040d374a0a3d619%3A0x4a238265970f96a3!2sBenin%20City%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1650528406743!5m2!1sen!2sng"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="py-4">
+                </iframe>
             </div>
         </div>
     </section>
@@ -300,7 +386,7 @@
         <div class="container">
             <div class="row gx-5 gy-4">
                 <div class="col-md-3">
-                    <a href="https://kevwmodupe.com"><img src="{% static 'assets/images/logo.png' %}" alt="Kevwe Modupe Logo" width="70" class="img-fluid mb-3"></a>
+                    <a href="https://kevwemodupe.com"><img src="{% static 'assets/images/logo.png' %}" alt="Kevwe Modupe Logo" width="70" class="img-fluid mb-3" loading="lazy"></a>
                     <p>Empowering people to unlock their voice, build visibility, and live out their brand boldly.</p>
                     <ul class="d-flex gap-3 ps-0 pt-4 social-icons">
                         <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -333,117 +419,108 @@
                 <div class="col-md-3">
                     <h4 class="mb-4">Get in Touch</h4>
                     <ul class="li-unstyled ps-0 footer-content">
-                        <li class="mb-2"><a href="#" class="d-flex gap-2"><i class="bi bi-geo-alt fs-4"></i>
-                            <span>Nigeria</span></a></li>
-                        <li class="mb-2"><a href="mailto:info@iamabrandthebook.com" class="d-flex gap-2 align-items-center"><i
-                            class="bi bi-envelope fs-4"></i><span>info@iamabrandthebook.com</span></a></li>
-                        <li class="mb-2"><a href="#" class="d-flex gap-2 align-items-center"><i
-                            class="bi bi-telephone fs-4"></i><span>+234 810 123 4567</span></a></li>
+                        <li class="mb-2"><a href="#" class="d-flex gap-2"><i class="bi bi-geo-alt fs-4"></i><span>Nigeria</span></a></li>
+                        <li class="mb-2"><a href="mailto:info@iamabrandthebook.com" class="d-flex gap-2 align-items-center"><i class="bi bi-envelope fs-4"></i><span>info@iamabrandthebook.com</span></a></li>
+                        <li class="mb-2"><a href="#" class="d-flex gap-2 align-items-center"><i class="bi bi-telephone fs-4"></i><span>+234 810 123 4567</span></a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="copyright-2 mt-90 text-center">
-            <h6 class="fw-normal">&copy; 2025I Am A Brand. All Rights Reserved</h6>
+            <h6 class="fw-normal">&copy; 2025 I Am a Brand. All Rights Reserved</h6>
         </div>
         <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
     </footer>
-    <!-- footer section end -->
+    <!-- Footer section end -->
 
-    
-    <footer class="footer-sticker">
-        <h4>Pre-Order Sales</h4>
-        <div class="sales-grid">
-            <p>Soft Copy Sold 0</p>
-            <p>Hard Copy Sold 0</p>
-        </div>
-    </footer>
+   
 
-    <!-- load scripts -->
-    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.counterup.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <!-- Load scripts -->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/jquery.counterup.js' %}" defer></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/scripts.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init();
+    </script>
 
+    <!-- Contact Form Submission -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-    <!-- Spinner Overlay -->
-<div id="contactSpinnerOverlay" style="display:none; position:fixed; inset:0; background-color:rgba(0, 0, 0, 0.6); z-index:1055;  align-items: center; justify-content: center;">
-  <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
-    <span class="visually-hidden">Sending...</span>
-  </div>
-</div>
+            const data = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
 
-<!-- SweetAlert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            // Show spinner
+            document.getElementById('contactSpinnerOverlay').style.display = 'flex';
 
-<script>
-  document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+            fetch('/send-contact-message/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => {
+                document.getElementById('contactSpinnerOverlay').style.display = 'none';
 
-    const data = {
-      name: document.getElementById('name').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      message: document.getElementById('message').value.trim()
-    };
+                if (res.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message Sent!',
+                        text: 'Thank you. We’ll get back to you shortly.',
+                        confirmButtonColor: '#3085d6'
+                    });
 
-    // Show spinner
-    document.getElementById('contactSpinnerOverlay').style.display = 'flex';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error('Network error');
+                }
+            })
+            .catch(() => {
+                document.getElementById('contactSpinnerOverlay').style.display = 'none';
 
-    fetch('/send-contact-message/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken')
-      },
-      body: JSON.stringify(data)
-    })
-    .then(res => {
-      document.getElementById('contactSpinnerOverlay').style.display = 'none';
-
-      if (res.ok) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Message Sent!',
-          text: 'Thank you. We’ll get back to you shortly.',
-          confirmButtonColor: '#3085d6'
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong. Please try again.',
+                    confirmButtonColor: '#d33'
+                });
+            });
         });
 
-        document.getElementById('contactForm').reset();
-      } else {
-        throw new Error('Network error');
-      }
-    })
-    .catch(() => {
-      document.getElementById('contactSpinnerOverlay').style.display = 'none';
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong. Please try again.',
-        confirmButtonColor: '#d33'
-      });
-    });
-  });
-
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === (name + "=")) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                const cookies = document.cookie.split(";");
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
         }
-      }
-    }
-    return cookieValue;
-  }
-</script>
+    </script>
 
+    <!-- Spinner Overlay -->
+    <div id="contactSpinnerOverlay" style="display:none; position:fixed; inset:0; background-color:rgba(0, 0, 0, 0.6); z-index:1055; align-items: center; justify-content: center;">
+        <div class="spinner-border text-light" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Sending...</span>
+        </div>
+    </div>
 </body>
-
 </html>
