@@ -18,6 +18,8 @@ urlpatterns = [
     path('process-payment/', views.process_payment, name='process_payment'),
     path('payment-success/', TemplateView.as_view(template_name='payment_success.html')),
     path('send-contact-message/', views.send_contact_message, name='send_contact_message'),
+    path('shop/<str:user>/', views.sales_page, name='sales_page'),
+    path('process_purchase/', views.process_user_payment, name='process_purchase'),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \

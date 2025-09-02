@@ -1,7 +1,7 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, BlogPost, BlogContent, SalesCounter
+from .models import CustomUser, BlogPost, BlogContent, SalesCounter, UserSale
 
 
 @admin.register(CustomUser)
@@ -39,7 +39,6 @@ class BlogPostAdmin(ModelAdmin):
     date.short_description = "Date"
 
 
-
 @admin.register(BlogContent)
 class BlogContentAdmin(ModelAdmin):
     list_display = ("post", "sub_header")
@@ -50,3 +49,13 @@ class BlogContentAdmin(ModelAdmin):
 class SalesCounterAdmin(ModelAdmin):
     list_display = ("soft_copy_sold", "hard_copy_sold")
     search_fields = ("soft_copy_sold", "hard_copy_sold")
+
+
+@admin.register(UserSale)
+class UserSaleAdmin(ModelAdmin):
+    list_display = ("referring_user", "buyer_email", "book_type", "page_name", "amount", "purchase_date", "transaction_id")
+    list_filter = ("book_type", "page_name", "purchase_date")
+    search_fields = ("referring_user", "buyer_email", "transaction_id", "page_name")
+    date_hierarchy = "purchase_date"
+    ordering = ("-purchase_date",)
+    list_per_page = 25

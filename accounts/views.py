@@ -15,17 +15,134 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 from django.conf import settings
-from .models import SalesCounter,BlogPost
-
-
+from .models import SalesCounter,BlogPost,CustomUser, UserSale
 
 
 logger = logging.getLogger(__name__)
+
 
 def home(request):
     return render(request, 'index.html',{
         'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY
     })
+
+
+
+
+def sales_page(request, user):
+    template_map = {
+        'mary': 'sales/mary_sales.html',
+        'jasmine': 'sales/jasmine_sales.html',
+        'stella': 'sales/stella_sales.html',
+        'john': 'sales/sales.html',
+    }
+    template_name = template_map.get(user.lower(), 'sales/sales.html')
+    return render(request, template_name, {
+        'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY
+    })
+
+
+def process_user_payment(request):
+    if request.method == 'POST':
+        try:
+            # Try JSON first
+            if request.headers.get('Content-Type') == 'application/json':
+                data = json.loads(request.body)
+            else:
+                # Fallback to form data
+                data = request.POST
+
+            email = data.get('email')
+            plan = data.get('plan') or data.get('book_type')
+            referring_user = data.get('referring_user')
+            page_name = data.get('page_name')
+            transaction_id = data.get('transaction_id')
+
+            if not transaction_id:
+                return JsonResponse({'error': 'Transaction ID missing'}, status=400)
+
+            # Verify Paystack transaction
+            paystack = requests.get(
+                f"https://api.paystack.co/transaction/verify/{transaction_id}",
+                headers={"Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}"}
+            )
+            paystack_response = paystack.json()
+
+            if paystack_response.get('status') and paystack_response['data']['status'] == 'success':
+                amount = paystack_response['data']['amount'] / 100  # kobo → naira
+                book_type = 'soft_copy' if plan in ['Ebook/PDF', 'soft_copy'] else 'hard_copy'
+
+                # Get or create user
+                referrer_name = referring_user if referring_user else "Anonymous"
+
+                # Save to UserSale
+                UserSale.objects.create(
+                    book_type=book_type,
+                    page_name=page_name,
+                    amount=amount,
+                    transaction_id=transaction_id,
+                    referring_user=referrer_name,
+                    buyer_email=email    # make sure your model has this field as CharField
+                )
+                # Update SalesCounter
+                sales = SalesCounter.objects.first()
+                if not sales:
+                    sales = SalesCounter(soft_copy_sold=0, hard_copy_sold=10)
+                if book_type == 'soft_copy':
+                    sales.soft_copy_sold += 1
+                else:
+                    sales.hard_copy_sold += 1
+                sales.save()
+
+                # Admin email
+                # send_mail(
+                #     subject='📘 New Book Order – I Am a Brand',
+                #     message=f"""
+                #     📚 NEW BOOK ORDER – I Am a Brand
+                    
+                #     🔹 Email: {email}
+                #     🔹 Plan: {plan}
+                #     🔹 Referrer: {referring_user}
+                #     🔹 Page: {page_name}
+                #     🔹 Txn ID: {transaction_id}
+                #     🔹 Amount: ₦{amount}
+                #     """,
+                #     from_email=settings.ADMIN_EMAIL,
+                #     recipient_list=[settings.ADMIN_EMAIL],
+                # )
+
+                # Customer email
+                # send_mail(
+                #     subject='📘 Your Order Confirmation – I Am a Brand',
+                #     message=f"""
+                #     Dear Customer,
+
+                #     Thank you for ordering "I Am a Brand"!
+
+                #     🔹 Plan: {plan}
+                #     🔹 Txn ID: {transaction_id}
+                #     🔹 Amount: ₦{amount}
+
+                #     {'You will receive a download link soon.' if plan in ['Ebook/PDF', 'soft_copy'] else 'We will contact you with delivery details.'}
+
+                #     Regards,
+                #     I Am a Brand Team
+                #     """,
+                #     from_email=settings.EMAIL_HOST_USER,
+                #     recipient_list=[email],
+                # )
+
+                return JsonResponse({'status': 'payment_processed'})
+            else:
+                return JsonResponse({'error': 'Transaction verification failed'}, status=400)
+
+        except Exception as e:
+            logger.error("Payment processing error", exc_info=True)
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
 
 def contact(request):
     return render(request, 'contact-us.html')

@@ -24,6 +24,7 @@ env = environ.Env()
 
 environ.Env.read_env(os.path.join(BASE_DIR,'file.env'))
 PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
 
 
 
@@ -197,7 +198,6 @@ PAYSTACK_PUBLIC_KEY = env('PAYSTACK_PUBLIC_KEY', default='pk_test_your_public_ke
 PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY', default='sk_test_your_secret_key')
 
 
-
 UNFOLD = {
     "SITE_HEADER": "IAmABrand Admin",
     "SITE_TITLE": "IAmABrand Admin Panel",
@@ -239,6 +239,12 @@ UNFOLD = {
                 "link": reverse_lazy("admin:accounts_salescounter_changelist"),
                 "description": _("Track sales counters."),
             },
+            {
+                "title": _("User Sales"),
+                "icon": "shopping_cart",
+                "link": reverse_lazy("admin:accounts_usersale_changelist"),
+                "description": _("Track sales by user and page."),
+            },
         ],
     },
     "SIDEBAR": {
@@ -269,6 +275,11 @@ UNFOLD = {
                         "title": _("Sales Counter"),
                         "icon": "bar_chart",
                         "link": reverse_lazy("admin:accounts_salescounter_changelist"),
+                    },
+                    {
+                        "title": _("User Sales"),
+                        "icon": "shopping_cart",
+                        "link": reverse_lazy("admin:accounts_usersale_changelist"),
                     },
                 ],
             },

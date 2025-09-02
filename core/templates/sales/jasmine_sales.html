@@ -1,0 +1,864 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <meta name="description" content="Purchase 'I Am a Brand' by Kevwe Modupe, a guide to personal branding for entrepreneurs and professionals in Nigeria and beyond.">
+    <meta name="keywords" content="Kevwe Modupe, I Am a Brand, personal branding Nigeria, TSLNigeria, Nigerian entrepreneur, branding book, personal growth">
+    <meta name="author" content="Kevwe Modupe">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Shop | I Am a Brand by Kevwe Modupe">
+    <meta property="og:description" content="Discover 'I Am a Brand' by Kevwe Modupe and learn how to build and monetize your personal brand. Pre-order now.">
+    <meta property="og:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iamabrandthebook.com/shop/mary">
+    <meta property="og:site_name" content="I Am a Brand">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shop | I Am a Brand by Kevwe Modupe">
+    <meta name="twitter:description" content="Discover 'I Am a Brand' by Kevwe Modupe and learn how to build and monetize your personal brand. Pre-order now.">
+    <meta name="twitter:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
+
+    <!-- Book Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "I Am a Brand",
+        "author": {
+            "@type": "Person",
+            "name": "Kevwe Modupe",
+            "sameAs": "https://kevwemodupe.com"
+        },
+        "description": "I Am a Brand is a personal branding encyclopedia by Kevwe Modupe, offering practical strategies to build, position, and monetize your personal brand for entrepreneurs, professionals, and creatives in Nigeria and beyond.",
+        "image": "{% static 'assets/images/index2/book-image-main.png' %}",
+        "url": "https://iamabrandthebook.com",
+        "isbn": "978-1234567890",
+        "inLanguage": "English",
+        "datePublished": "2025-09-06",
+        "publisher": {
+            "@type": "Organization",
+            "name": "TSLNigeria",
+            "sameAs": "https://tslnigeria.com"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "4"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "50",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/EBook"
+                },
+                "seller": {
+                    "@type": "Organization",
+                    "name": "TSLNigeria"
+                }
+            },
+            {
+                "@type": "Offer",
+                "price": "70",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/Hardcover"
+                },
+                "seller": {
+                    "@type": "Organization",
+                    "name": "TSLNigeria"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TSLNigeria",
+        "url": "https://tslnigeria.com",
+        "logo": "{% static 'assets/images/logo.png' %}",
+        "description": "TSLNigeria is a digital and branding company empowering African startups with global visibility, led by Kevwe Modupe.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1, Suite 24 & 25, Comfort Shopping Plaza",
+            "addressLocality": "Benin City",
+            "addressRegion": "Edo",
+            "postalCode": "300001",
+            "addressCountry": "NG"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 6.3350,
+            "longitude": 5.6037
+        },
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "+234-810-123-4567",
+                "email": "info@iamabrandthebook.com",
+                "contactType": "Customer Service",
+                "areaServed": "NG",
+                "availableLanguage": "English"
+            }
+        ],
+        "sameAs": [
+            "https://facebook.com/tslnigeria",
+            "https://x.com/tslnigeria",
+            "https://linkedin.com/company/tslnigeria",
+            "https://instagram.com/tslnigeria"
+        ]
+    }
+    </script>
+
+    <!-- WebPage Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Shop I Am a Brand",
+        "url": "https://iamabrandthebook.com/shop/mary",
+        "description": "Purchase 'I Am a Brand' by Kevwe Modupe, a guide to personal branding, and explore related resources.",
+        "mainEntity": {
+            "@type": "ContactPoint",
+            "telephone": "+234-810-123-4567",
+            "email": "info@iamabrandthebook.com",
+            "contactType": "Customer Service"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://iamabrandthebook.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Shop",
+                    "item": "https://iamabrandthebook.com/shop/mary"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons.min.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" defer>
+    <link href="{% static 'assets/css/fontawesome/fontawesome.css' %}" rel="stylesheet" defer>
+    <link href="{% static 'assets/css/fontawesome/brands.css' %}" rel="stylesheet" defer>
+    <link href="{% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" defer>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" defer>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" defer>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
+
+    <!-- Theme Customization -->
+    <style>
+        :root {
+            --gradient-primary: none;
+            --gradient-primary-hover: none;
+        }
+        #loading-spinner { margin: 20px 0; }
+        .footer-sticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .footer-sticker h4 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid white;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .sales-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .sales-grid p {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .category-filter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .category-filter label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .category-filter select {
+            width: auto;
+            min-width: 150px;
+            max-width: 200px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            height: 35px;
+        }
+        .key-benefits, .testimonials, .how-to-use {
+            padding: 20px;
+        }
+        .key-benefits h4, .testimonials h4, .how-to-use h4 {
+            font-size: 1.5em;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+        .key-benefits ul, .how-to-use ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .key-benefits ul li, .how-to-use ul li {
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .key-benefits ul li i, .how-to-use ul li i {
+            color: #0056b3;
+            margin-right: 10px;
+        }
+        .testimonials .testimonial-item {
+            margin-bottom: 15px;
+        }
+        .testimonials .testimonial-item p {
+            font-style: italic;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .testimonials .testimonial-item h5 {
+            font-size: 1.2em;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: #0056b3;
+        }
+        .testimonials .testimonial-item p.author {
+            font-size: 0.9em;
+            font-weight: normal;
+            color: #6c757d;
+        }
+        /* Spinner Overlay */
+        #spinnerOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        #spinnerOverlay .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+
+    <title>Shop | I Am a Brand by Kevwe Modupe</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
+    <!-- Spinner Overlay -->
+    <div id="spinnerOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailModalLabel">Enter Your Email</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="emailForm">
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="userEmail" placeholder="Enter your email" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="startPayment()">Proceed to Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="navbar_top" class="bg-primary text-white fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg py-3">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img class="logo-dark" src="{% static 'assets/images/logo_white.png' %}" alt="Site Logo" width="60" loading="lazy">
+                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50" loading="lazy">
+                </a>
+                <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'home' %}#chapters">Chapter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-light rounded-pill text-dark" href="#buy">Buy Now Book</a>
+                </div>
+                <div class="header-seperator"></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Header Banner -->
+    <section class="header-banner bookpress-parallax" id="header-banner-id">
+        <div class="container d-flex justify-content-between align-items-center text-white">
+            <div class="overlay-out">
+                <h1 class="banner-title">Products</h1>
+                <p class="text-white"><a href="{% url 'home' %}" class="text-decoration-none text-white">Home</a> / <a class="text-decoration-none text-white">Product</a></p>
+            </div>
+            <img style="width: 150px; height: 150px;" src="{% static 'assets/images/index2/book-image-main.png' %}" class="img-fluid" alt="Books">
+            <div class="parallax start-0 top-0 w-100 h-100"></div>
+        </div>
+    </section>
+
+    <!-- Product Content -->
+    <section class="product pt-100 pb-5">
+        <div class="container">
+            <div class="row border">
+                <div class="col-md-5 ps-0">
+                    <div class="p-3 bg-light border-bottom border-end">
+                        <img src="{% static 'assets/images/index2/book-image-main.webp' %}" class="img-fluid" alt="Book">
+                    </div>
+                    <div class="row row-cols-3 gx-3 py-3 ps-3">
+                        <div class="col">
+                            <img src="{% static 'assets/images/index2/book-image-main2.webp' %}" class="img-fluid" alt="Book Gallery">
+                        </div>
+                        <div class="col">
+                            <img src="{% static 'assets/images/index2/book-image-main3.webp' %}" class="img-fluid" alt="Book Gallery">
+                        </div>
+                        <div class="col">
+                            <img src="{% static 'assets/images/index2/book-image-main4.webp' %}" class="img-fluid" alt="Book Gallery">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="p-3">
+                        <div class="pb-3 border-bottom">
+                            <p class="text-primary mb-2">Personal Growth, Branding</p>
+                            <h2 class="fs-2">I Am a Brand</h2>
+                            <div class="pt-2">
+                                <span class="fs-3 fw-bold text-primary ms-3">$70 / ₦100,000</span>
+                            </div>
+                            <div class="pt-2">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <span class="ps-3">(50 Reviews)</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="pt-4">Discover how to build, position, and monetize your personal brand with practical strategies from Kevwe Modupe, designed for entrepreneurs, professionals, and creatives in Nigeria and beyond.</p>
+                            <ul class="list-col-2 li-unstyled responsive-grid ps-0 mb-0 check-icon-sm pt-4">
+                                <li class="mb-3">
+                                    <i class="bi bi-check-lg"></i><span class="ms-2">Publisher: TSLNigeria</span>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="bi bi-check-lg"></i><span class="ms-2">Publish Date: September 6, 2025</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Purchase Form -->
+                        <div class="d-flex gap-4 align-items-center py-30 border-bottom">
+                            <form id="purchaseForm" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="referring_user" value="jasmine">
+                                <input type="hidden" name="page_name" value="jasmine_page">
+                                <select name="book_type" class="form-select mb-2 pay-btn" required>
+                                    <option value="" disabled selected>Select Book Type</option>
+                                    <option value="soft_copy" data-plan="Ebook/PDF" data-price="80000">Soft Copy ($50)</option>
+                                    <option value="hard_copy" data-plan="Printed Copy" data-price="100000">Hard Copy ($70)</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary pay-btn">Purchase</button>
+                            </form>
+                        </div>
+                        <!-- Sales Counter Display -->
+                        <div class="sales-grid mt-3">
+                            <div><p>Soft Copies Sold: <span class="blink">0</span></p></div>
+                            <div><p>Hard Copies Sold: <span class="blink">10</span></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Specifications -->
+    <section class="product-meta pb-100">
+        <div class="container">
+            <h3 class="fs-2">Product Specification & Summary</h3>
+            <div class="pt-5">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="bg-light ps-3 pe-1 pt-3 pb-1 rounded-2">
+                            <ul class="nav nav-pills mb-3 ps-4" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5 active" id="pills-summary-tab" data-bs-toggle="pill" data-bs-target="#pills-summary" type="button" role="tab" aria-controls="pills-summary" aria-selected="true">Summary</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5" id="pills-specification-tab" data-bs-toggle="pill" data-bs-target="#pills-specification" type="button" role="tab" aria-controls="pills-specification" aria-selected="false">Specification</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5" id="pills-author-tab" data-bs-toggle="pill" data-bs-target="#pills-author" type="button" role="tab" aria-controls="pills-author" aria-selected="false">Authors</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button" role="tab" aria-controls="pills-review" aria-selected="false">Reviews</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5" id="pills-benefits-tab" data-bs-toggle="pill" data-bs-target="#pills-benefits" type="button" role="tab" aria-controls="pills-benefits" aria-selected="false">Key Benefits</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5" id="pills-testimonials-tab" data-bs-toggle="pill" data-bs-target="#pills-testimonials" type="button" role="tab" aria-controls="pills-testimonials" aria-selected="false">What People Are Saying</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link py-3 px-5" id="pills-howtouse-tab" data-bs-toggle="pill" data-bs-target="#pills-howtouse" type="button" role="tab" aria-controls="pills-howtouse" aria-selected="false">How to Use</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content mt-4" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-summary" role="tabpanel" aria-labelledby="pills-summary-tab" tabindex="0">
+                        <div>
+                            <table class="product-specifications">
+                                <thead>
+                                    <tr>
+                                        <td class="meta">Title</td>
+                                        <td class="specification">I Am a Brand</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="meta">Author</td>
+                                        <td class="specification">Kevwe Modupe</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">Publisher</td>
+                                        <td class="specification">TSLNigeria</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">ISBN</td>
+                                        <td class="specification">978-1234567890</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">Edition</td>
+                                        <td class="specification">1st Edition, 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">Number of Pages</td>
+                                        <td class="specification">320</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">Country</td>
+                                        <td class="specification">Nigeria</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">Language</td>
+                                        <td class="specification">English</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-specification" role="tabpanel" aria-labelledby="pills-specification-tab" tabindex="0">
+                        <div>
+                            <table class="product-specifications">
+                                <thead>
+                                    <tr>
+                                        <td class="meta">Title</td>
+                                        <td class="specification">I Am a Brand</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="meta">Format</td>
+                                        <td class="specification">Ebook, Hardcover</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="meta">Pages</td>
+                                        <td class="specification">320</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-author" role="tabpanel" aria-labelledby="pills-author-tab" tabindex="0">
+                        <section class="about-section-4">
+                            <div class="row g-5">
+                                <div class="col-lg-4">
+                                    <div class="rounded-circle overflow-hidden author-image-scle">
+                                        <img src="{% static 'assets/images/index2/Kevwe-364x470.png' %}" class="img-fluid" alt="author img">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="d-grid gap-3 ps-5">
+                                        <h3 class="fs-2 fw-bold">Kevwe Modupe</h3>
+                                        <div class="author-quote px-20 py-2">
+                                            <p class="fs-4 lh-sm fw-normal text-muted">Your brand is your voice. Let it be bold, authentic, and unforgettable.</p>
+                                        </div>
+                                        <p class="text-muted">Hi, I am <span class="fw-bold">Kevwe Modupe</span>, a Nigerian entrepreneur and branding expert dedicated to empowering individuals to build their personal brands.</p>
+                                        <p class="text-muted">As the founder of TSLNigeria, I have inspired thousands through workshops, speaking engagements, and now my book, <em>I Am a Brand</em>, sharing practical strategies for global visibility.</p>
+                                        <div class="d-flex gap-3 pookpress-author-slink mb-4">
+                                            <a href="https://facebook.com/tslnigeria" class="text-decoration-none border rounded-circle">
+                                                <span class="fa-brands fa-facebook-f"></span>
+                                            </a>
+                                            <a href="https://x.com/tslnigeria" class="text-decoration-none border rounded-circle">
+                                                <span class="fa-brands fa-twitter"></span>
+                                            </a>
+                                            <a href="https://linkedin.com/company/tslnigeria" class="text-decoration-none border rounded-circle">
+                                                <span class="fa-brands fa-linkedin-in"></span>
+                                            </a>
+                                            <a href="https://instagram.com/tslnigeria" class="text-decoration-none border rounded-circle">
+                                                <span class="fa-brands fa-instagram"></span>
+                                            </a>
+                                        </div>
+                                        <div class="signature">
+                                            <img src="{% static 'assets/images/signature.png' %}" alt="" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
+                        <section class="review-section-3 pt-4">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10">
+                                    <div class="text-center process-title-2">
+                                        <p class="mb-32 fs-5 fw-normal">"This book transformed the way I approach my personal brand. Kevwe's insights are practical and inspiring!"</p>
+                                        <h3>Chinwe Okoye</h3>
+                                        <p class="mb-32">Entrepreneur, Lagos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane fade" id="pills-benefits" role="tabpanel" aria-labelledby="pills-benefits-tab" tabindex="0">
+                        <div class="key-benefits">
+                            <h4>Key Benefits</h4>
+                            <ul>
+                                <li><i class="bi bi-check-lg"></i>Master practical strategies to build a powerful personal brand.</li>
+                                <li><i class="bi bi-check-lg"></i>Position yourself as an authority in your industry.</li>
+                                <li><i class="bi bi-check-lg"></i>Learn how to monetize your brand effectively.</li>
+                                <li><i class="bi bi-check-lg"></i>Create lasting impact in Nigeria and globally.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-testimonials" role="tabpanel" aria-labelledby="pills-testimonials-tab" tabindex="0">
+                        <div class="testimonials">
+                            <h4>What People Are Saying</h4>
+                            <div class="testimonial-item">
+                                <p>"Kevwe's book is a game-changer for anyone looking to elevate their personal brand. Highly recommended!"</p>
+                                <h5>David Adebayo</h5>
+                                <p class="author">Marketing Professional, Abuja</p>
+                            </div>
+                            <div class="testimonial-item">
+                                <p>"The strategies in 'I Am a Brand' are clear, actionable, and perfect for professionals aiming to stand out."</p>
+                                <h5>Amaka Nwosu</h5>
+                                <p class="author">Creative Consultant, Port Harcourt</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-howtouse" role="tabpanel" aria-labelledby="pills-howtouse-tab" tabindex="0">
+                        <div class="how-to-use">
+                            <h4>How to Use</h4>
+                            <ul>
+                                <li><i class="bi bi-check-lg"></i>Read each chapter and take notes on key concepts.</li>
+                                <li><i class="bi bi-check-lg"></i>Apply the exercises to develop your brand strategy.</li>
+                                <li><i class="bi bi-check-lg"></i>Join the TSLNigeria online community for additional resources.</li>
+                                <li><i class="bi bi-check-lg"></i>Revisit the book periodically to refine your branding approach.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer-3 pt-90">
+        <div class="container">
+            <div class="row gx-5 gy-4">
+                <div class="col-md-3">
+                    <a href="https://kevwemodupe.com"><img src="{% static 'assets/images/logo.png' %}" alt="Kevwe Modupe Logo" width="70" class="img-fluid mb-3" loading="lazy"></a>
+                    <p>Empowering people to unlock their voice, build visibility, and live out their brand boldly.</p>
+                    <ul class="d-flex gap-3 ps-0 pt-4 social-icons">
+                        <li><a href="https://facebook.com/tslnigeria" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="https://x.com/tslnigeria" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="https://linkedin.com/company/tslnigeria" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="https://instagram.com/tslnigeria" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 offset-md-1">
+                    <div class="footer-links">
+                        <h4 class="mb-4">Explore</h4>
+                        <ul class="li-unstyled ps-0 footer-content">
+                            <li class="mb-3"><a href="#"><span class="ms-1">About Kevwe</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Books</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Podcast</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Speaking</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Contact</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-links">
+                        <h4 class="mb-4">Support</h4>
+                        <ul class="li-unstyled ps-0 footer-content footer-contact">
+                            <li class="mb-3"><a href="#">FAQs</a></li>
+                            <li class="mb-3"><a href="#">Privacy Policy</a></li>
+                            <li class="mb-3"><a href="#">Terms of Use</a></li>
+                            <li class="mb-3"><a href="#">Community Guidelines</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="mb-4">Get in Touch</h4>
+                    <ul class="li-unstyled ps-0 footer-content">
+                        <li class="mb-2"><a href="#" class="d-flex gap-2"><i class="bi bi-geo-alt fs-4"></i><span>Nigeria</span></a></li>
+                        <li class="mb-2"><a href="mailto:info@iamabrandthebook.com" class="d-flex gap-2 align-items-center"><i class="bi bi-envelope fs-4"></i><span>info@iamabrandthebook.com</span></a></li>
+                        <li class="mb-2"><a href="#" class="d-flex gap-2 align-items-center"><i class="bi bi-telephone fs-4"></i><span>+234 810 123 4567</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-2 mt-90 text-center">
+            <h6 class="fw-normal">&copy; 2025 I Am a Brand. All Rights Reserved</h6>
+        </div>
+        <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+   
+    <script>
+    let selectedPlan = "";
+    let selectedPrice = 0;
+    let referringUser = "";
+    let pageName = "";
+    let emailModalInstance;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const modalElement = document.getElementById('emailModal');
+        emailModalInstance = new bootstrap.Modal(modalElement, {});
+
+        // Fetch initial sales data
+        fetch('/api/sales-data/')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.sales-grid div:nth-child(1) .blink').textContent = data.softCopySold;
+                document.querySelector('.sales-grid div:nth-child(2) .blink').textContent = data.hardCopySold;
+            })
+            .catch(error => console.error('Error fetching sales data:', error));
+
+        // Set up purchase form
+        document.querySelector('#purchaseForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const selectedOption = this.querySelector('select[name="book_type"]').selectedOptions[0];
+            selectedPlan = selectedOption.getAttribute('data-plan');
+            selectedPrice = parseInt(selectedOption.getAttribute('data-price')); // numeric value
+            referringUser = this.querySelector('input[name="referring_user"]').value;
+            pageName = this.querySelector('input[name="page_name"]').value;
+
+            document.getElementById('spinnerOverlay').style.display = 'flex';
+
+            setTimeout(() => {
+                document.getElementById('spinnerOverlay').style.display = 'none';
+                emailModalInstance.show();
+            }, 1000);
+        });
+    });
+
+    function startPayment() {
+        const email = document.getElementById('userEmail').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email || !emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        emailModalInstance.hide();
+        document.getElementById('spinnerOverlay').style.display = 'flex';
+
+        const handler = PaystackPop.setup({
+            key: "{{ paystack_public_key }}", // replace with live key in production
+            email: email,
+            amount: selectedPrice * 100, // Convert to kobo
+            currency: "NGN",
+            callback: function (response) {
+                fetch('/process_purchase/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        plan: selectedPlan,
+                        referring_user: referringUser,
+                        page_name: pageName,
+                        transaction_id: response.reference
+                    })
+                })
+                .then(async response => {
+                    const data = await response.json().catch(() => ({}));
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Payment processing failed');
+                    }
+                    return data;
+                })
+                .then(data => {
+                    console.log("✅ Server response:", data);
+
+                    const softCopyElement = document.querySelector('.sales-grid div:nth-child(1) .blink');
+                    const hardCopyElement = document.querySelector('.sales-grid div:nth-child(2) .blink');
+                    let softCopySold = parseInt(softCopyElement.textContent);
+                    let hardCopySold = parseInt(hardCopyElement.textContent);
+
+                    if (selectedPlan === 'Ebook/PDF') {
+                        softCopySold += 1;
+                        softCopyElement.textContent = softCopySold;
+                    } else if (selectedPlan === 'Printed Copy') {
+                        hardCopySold += 1;
+                        hardCopyElement.textContent = hardCopySold;
+                    }
+
+                    return fetch('/api/update-sales/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({
+                            softCopySold: softCopySold,
+                            hardCopySold: hardCopySold
+                        })
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to update sales data');
+                    window.location.href = "/payment-success/";
+                })
+                .catch(error => {
+                    document.getElementById('spinnerOverlay').style.display = 'none';
+                    alert("❌ Error: " + error.message);
+                    console.error("Detailed error:", error);
+                });
+            },
+            onClose: function () {
+                document.getElementById('spinnerOverlay').style.display = 'none';
+                alert("Payment not completed.");
+            }
+        });
+
+        handler.openIframe();
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+
+
+
+</body>
+</html>

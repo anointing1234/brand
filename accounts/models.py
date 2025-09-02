@@ -107,3 +107,26 @@ class SalesCounter(models.Model):
 
     def __str__(self):
         return f"Soft: {self.soft_copy_sold}, Hard: {self.hard_copy_sold}"
+    
+
+
+
+
+
+class UserSale(models.Model):
+    BOOK_TYPE_CHOICES = [
+        ("soft_copy", "Soft Copy"),
+        ("hard_copy", "Hard Copy"),
+    ]
+
+    referring_user = models.CharField(max_length=255, blank=True, null=True)  # plain text instead of FK
+    book_type = models.CharField(max_length=20, choices=BOOK_TYPE_CHOICES)
+    page_name = models.CharField(max_length=100, blank=True, null=True)  # e.g., "mary_page", "jazmin_page"
+    purchase_date = models.DateTimeField(default=timezone.now)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)  # e.g., 50.00 for soft, 70.00 for hard
+    transaction_id = models.CharField(max_length=100, unique=True)  # Paystack transaction ID
+    buyer_email = models.EmailField(blank=True, null=True)  # optional, in case you want to store customer’s email
+
+    def __str__(self):
+        referrer = self.referring_user or "No Referrer"
+        return f"{referrer}: {self.book_type} from {self.page_name or 'N/A'} on {self.purchase_date.strftime('%Y-%m-%d %H:%M')}"
