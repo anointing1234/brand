@@ -37,8 +37,13 @@ SECRET_KEY = 'django-insecure-v=@*zbkjfqcem@n^hu=t6p^kkn2qcge9hdj*b%ia946-uqg1wu
 DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["iamabrandthebook.com"]
-CSRF_TRUSTED_ORIGINS = ["http://iamabrandthebook.com"]
+ALLOWED_HOSTS = ["iamabrandthebook.com", "www.iamabrandthebook.com"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://iamabrandthebook.com",
+    "https://www.iamabrandthebook.com"
+]
+
 
 
 AUTH_USER_MODEL = "accounts.CustomUser"
