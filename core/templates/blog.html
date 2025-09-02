@@ -1,0 +1,439 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <meta name="description" content="Blog Kevwe Modupe, author of 'I Am a Brand,' for inquiries about personal branding, book pre-orders, or speaking engagements in Nigeria and beyond.">
+    <meta name="keywords" content="Blog Kevwe Modupe, I Am a Brand book, personal branding Nigeria, TSLNigeria Blog, Nigerian entrepreneur, branding book inquiries, book author Blog">
+    <meta name="author" content="Kevwe Modupe">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (for social sharing) -->
+    <meta property="og:title" content="Blog | I Am a Brand by Kevwe Modupe">
+    <meta property="og:description" content="Get in touch with Kevwe Modupe for questions about 'I Am a Brand,' personal branding, or speaking opportunities.">
+    <meta property="og:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iamabrandthebook.com/Blog">
+    <meta property="og:site_name" content="I Am a Brand">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | I Am a Brand by Kevwe Modupe">
+    <meta name="twitter:description" content="Reach out to Kevwe Modupe, author of 'I Am a Brand,' for book inquiries or branding advice.">
+    <meta name="twitter:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
+
+    <!-- Enhanced Book Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "I Am a Brand",
+        "author": {
+            "@type": "Person",
+            "name": "Kevwe Modupe",
+            "sameAs": "https://kevwemodupe.com"
+        },
+        "description": "I Am a Brand is a personal branding encyclopedia by Kevwe Modupe, offering practical strategies to build, position, and monetize your personal brand for entrepreneurs, professionals, and creatives in Nigeria and beyond.",
+        "image": "{% static 'assets/images/index2/book-image-main.png' %}",
+        "url": "https://iamabrandthebook.com",
+        "isbn": "978-1234567890",
+        "inLanguage": "en",
+        "datePublished": "2025-09-06",
+        "publisher": {
+            "@type": "Organization",
+            "name": "TSLNigeria",
+            "sameAs": "https://tslnigeria.com"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "4"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "50",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/EBook"
+                },
+                "seller": {
+                    "@type": "Organization",
+                    "name": "TSLNigeria"
+                }
+            },
+            {
+                "@type": "Offer",
+                "price": "70",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock",
+                "itemOffered": {
+                    "@type": "Book",
+                    "bookFormat": "https://schema.org/Hardcover"
+                },
+                "seller": {
+                    "@type": "Organization",
+                    "name": "TSLNigeria"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Organization Schema for TSLNigeria -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TSLNigeria",
+        "url": "https://tslnigeria.com",
+        "logo": "{% static 'assets/images/logo.png' %}",
+        "description": "TSLNigeria is a digital and branding company empowering African startups with global visibility, led by Kevwe Modupe.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1, Suite 24 & 25, Comfort Shopping Plaza,",
+            "addressLocality": "Benin City",
+            "addressRegion": "Edo",
+            "postalCode": "300001",
+            "addressCountry": "NG"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 6.3350,
+            "longitude": 5.6037
+        },
+        "BlogPoint": [
+            {
+                "@type": "BlogPoint",
+                "telephone": "+234-810-123-4567",
+                "email": "info@iamabrandthebook.com",
+                "BlogType": "Customer Service",
+                "areaServed": "NG",
+                "availableLanguage": "English"
+            }
+        ],
+        "sameAs": [
+            "https://facebook.com/tslnigeria",
+            "https://x.com/tslnigeria",
+            "https://linkedin.com/company/tslnigeria",
+            "https://instagram.com/tslnigeria"
+        ]
+    }
+    </script>
+
+    <!-- WebPage Schema for Blog Page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Blog I Am a Brand",
+        "url": "https://iamabrandthebook.com/Blog",
+        "description": "Blog Kevwe Modupe, author of 'I Am a Brand,' for inquiries about personal branding, book pre-orders, or speaking engagements in Nigeria and beyond.",
+        "mainEntity": {
+            "@type": "BlogPoint",
+            "telephone": "+234-810-123-4567",
+            "email": "info@iamabrandthebook.com",
+            "BlogType": "Customer Service"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://iamabrandthebook.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "https://iamabrandthebook.com/Blog"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons.min.css' %}" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" defer>
+    <link href="{% static 'assets/css/fontawesome/fontawesome.css' %}" rel="stylesheet" defer>
+    <link href="{% static 'assets/css/fontawesome/brands.css' %}" rel="stylesheet" defer>
+    <link href="{% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet" defer>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" defer>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" defer>
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" defer>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
+
+    <!-- Theme Customization -->
+    <style>
+        :root {
+            --gradient-primary: none;
+            --gradient-primary-hover: none;
+        }
+        /* Ensure spinner is centered */
+        #loading-spinner {
+            margin: 20px 0;
+        }
+
+        .footer-sticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .footer-sticker h4 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 2px solid white;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .sales-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .sales-grid p {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        /* Category filter styling */
+        .category-filter {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .category-filter label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .category-filter select {
+            width: auto;
+            min-width: 150px;
+            max-width: 200px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            height: 35px;
+        }
+    </style>
+
+    <title>Blog | I Am a Brand by Kevwe Modupe</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
+    
+    <!-- Header -->
+    <header id="navbar_top" class="bg-primary text-white fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg py-3">
+                <!-- Site logo -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img class="logo-dark" src="{% static 'assets/images/logo_white.png' %}" alt="Site Logo" width="60" loading="lazy">
+                    <img class="logo-white" src="{% static 'assets/images/logo.png' %}" alt="Site Logo" width="50" loading="lazy">
+                </a>
+                <button class="navbar-toggler me-3 ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'home' %}#about">About me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#products">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}#chapters">Chapter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'blog' %}">Blog</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-light rounded-pill text-dark" href="#buy">Buy Now Book</a>
+                </div>
+                <div class="header-seperator"></div>
+            </nav>
+        </div>
+    </header>
+    <!-- Header end -->
+
+    <!-- Header banner -->
+    <section class="header-banner bookpress-parallax" id="header-banner-id">
+        <div class="container d-flex justify-content-between align-items-center text-white">
+            <div class="overlay-out">
+                <h1 class="banner-title">Blog</h1>
+                <p class="text-white"><a href="{% url 'home' %}" class="text-decoration-none text-white">Home</a> /
+                    <a href="{% url 'blog' %}" class="text-decoration-none text-white">Blog Post</a>
+                </p>
+            </div>
+            <img style="width: 150px; height: 150px;" src="{% static 'assets/images/index2/book-image-main.png' %}" class="img-fluid" alt="I Am a Brand Book Cover" loading="lazy">
+            <div class="parallax start-0 top-0 w-100 h-100"></div>
+        </div>
+    </section>
+    <!-- Header banner end -->
+
+    <!-- Category Filter and Blog Posts -->
+    <section class="container py-5">
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <label for="category-select">Filter by Category:</label>
+            <form method="GET" action="{% url 'blog' %}">
+                <select name="category" id="category-select" onchange="this.form.submit()">
+                    <option value="all" {% if not selected_category %}selected{% endif %}>All Categories</option>
+                    {% for category in categories %}
+                        <option value="{{ category.category }}" {% if selected_category == category.category %}selected{% endif %}>{{ category.category }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+        <!-- Category Heading -->
+        <h1 class="mb-5">
+            {% if selected_category and selected_category != 'all' %}
+                {{ selected_category|capfirst }}
+            {% else %}
+                All Posts
+            {% endif %}
+        </h1>
+        <hr>
+
+        <!-- Blog Posts -->
+        {% for post in posts %}
+        <div class="row align-items-center mb-5 pb-4 border-bottom">
+            {% if forloop.counter|divisibleby:2 %}
+                <!-- Even posts: Image left, text right -->
+                <div class="col-md-6 mt-5">
+                    <img src="{{ post.main_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ post.title }}">
+                </div>
+                <div class="col-md-6 mt-5">
+                    <p style="margin-top:50px;" class="text-muted text-uppercase small">{{ post.published_at|date:"M d, Y" }}</p>
+                    <hr>
+                    <h3 style="margin-top:50px;">{{ post.title }}</h3>
+                    <p style="margin-top:50px;">{{ post.header_text|truncatechars:180 }}</p>
+                    <a href="{% url 'blog_detail' post.slug %}" class="btn btn-outline-primary rounded-pill">Read More</a>
+                </div>
+            {% else %}
+                <!-- Odd posts: Text left, image right -->
+                <div class="col-md-6 mt-5">
+                    <p class="text-muted text-uppercase small">{{ post.published_at|date:"M d, Y" }}</p>
+                    <hr>
+                    <h3>{{ post.title }}</h3>
+                    <p class="mb-3">{{ post.header_text|truncatechars:180 }}</p>
+                    <a href="{% url 'blog_detail' post.slug %}" class="btn btn-outline-primary rounded-pill">Read More</a>
+                </div>
+                <div class="col-md-6 mt-5">
+                    <img src="{{ post.main_image.url }}" class="img-fluid rounded shadow-sm" alt="{{ post.title }}">
+                </div>
+            {% endif %}
+        </div>
+        {% empty %}
+            <p>No blog posts found in this category.</p>
+        {% endfor %}
+    </section>
+
+    <!-- Scroll Back to Top -->
+    <a href="#header-banner-id" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    <!-- End Scroll Back to Top -->
+
+    <!-- Footer Section -->
+    <footer id="footer" class="footer-3 pt-90">
+        <div class="container">
+            <div class="row gx-5 gy-4">
+                <div class="col-md-3">
+                    <a href="https://kevwemodupe.com"><img src="{% static 'assets/images/logo.png' %}" alt="Kevwe Modupe Logo" width="70" class="img-fluid mb-3" loading="lazy"></a>
+                    <p>Empowering people to unlock their voice, build visibility, and live out their brand boldly.</p>
+                    <ul class="d-flex gap-3 ps-0 pt-4 social-icons">
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 offset-md-1">
+                    <div class="footer-links">
+                        <h4 class="mb-4">Explore</h4>
+                        <ul class="li-unstyled ps-0 footer-content">
+                            <li class="mb-3"><a href="#"><span class="ms-1">About Kevwe</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Books</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Podcast</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Speaking</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Blog</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="mb-4">Support</h4>
+                    <ul class="li-unstyled ps-0 footer-content footer-Blog">
+                        <li class="mb-3"><a href="#">FAQs</a></li>
+                        <li class="mb-3"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-3"><a href="#">Terms of Use</a></li>
+                        <li class="mb-3"><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="mb-4">Get in Touch</h4>
+                    <ul class="li-unstyled ps-0 footer-content">
+                        <li class="mb-2"><a href="#" class="d-flex gap-2"><i class="bi bi-geo-alt fs-4"></i><span>Nigeria</span></a></li>
+                        <li class="mb-2"><a href="mailto:info@iamabrandthebook.com" class="d-flex gap-2 align-items-center"><i class="bi bi-envelope fs-4"></i><span>info@iamabrandthebook.com</span></a></li>
+                        <li class="mb-2"><a href="#" class="d-flex gap-2 align-items-center"><i class="bi bi-telephone fs-4"></i><span>+234 810 123 4567</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-2 mt-90 text-center">
+            <h6 class="fw-normal">&copy; 2025 I Am a Brand. All Rights Reserved</h6>
+        </div>
+        <a href="#home" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    </footer>
+    <!-- Footer section end -->
+
+    <!-- Load scripts -->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/jquery.counterup.js' %}" defer></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/scripts.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+</body>
+</html>

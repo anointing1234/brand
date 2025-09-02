@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 from django.conf import settings
-from .models import SalesCounter
+from .models import SalesCounter,BlogPost
 
 
 
@@ -128,10 +128,33 @@ def send_contact_message(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-
 def blog_view(request):
-    return render(request,'blog.html')
+    # Get the selected category from the GET parameter
+    selected_category = request.GET.get('category', None)
+    
+    # Fetch all unique categories for the dropdown
+    categories = BlogPost.objects.values('category').distinct()
+    
+    # Fetch blog posts, filtered by category if provided, ordered by published_at
+    if selected_category and selected_category != 'all':
+        posts = BlogPost.objects.filter(category=selected_category).order_by('-published_at')
+    else:
+        posts = BlogPost.objects.all().order_by('-published_at')
+    
+    # Context for the template
+    context = {
+        'posts': posts,
+        'categories': categories,
+        'selected_category': selected_category,
+    }
+    
+    return render(request, 'blog.html', context)
 
+
+def blog_detail(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug)
+    contents = post.contents.all()  # thanks to related_name="contents"
+    return render(request, "blog_detail.html", {"post": post, "contents": contents})
 
 
 def get_sales_data(request):

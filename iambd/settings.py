@@ -41,7 +41,8 @@ ALLOWED_HOSTS = ["iamabrandthebook.com"]
 CSRF_TRUSTED_ORIGINS = ["http://iamabrandthebook.com"]
 
 
-# AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = "accounts.CustomUser"
+
 
 INSTALLED_APPS = [
     "unfold",
@@ -192,11 +193,6 @@ PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY', default='sk_test_your_secret_ke
 
 
 
-
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
-from django.templatetags.static import static
-
 UNFOLD = {
     "SITE_HEADER": "IAmABrand Admin",
     "SITE_TITLE": "IAmABrand Admin Panel",
@@ -221,22 +217,22 @@ UNFOLD = {
                 "description": _("Manage registered users."),
             },
             {
-                "title": _("Books"),
-                "icon": "book",
-                "link": reverse_lazy("admin:accounts_book_changelist"),
-                "description": _("Manage books in the store."),
+                "title": _("Blog Posts"),
+                "icon": "article",
+                "link": reverse_lazy("admin:accounts_blogpost_changelist"),
+                "description": _("Manage blog posts."),
             },
             {
-                "title": _("Book Formats"),
-                "icon": "auto_stories",
-                "link": reverse_lazy("admin:accounts_bookformat_changelist"),
-                "description": _("Manage book formats and pricing."),
+                "title": _("Blog Content"),
+                "icon": "notes",
+                "link": reverse_lazy("admin:accounts_blogcontent_changelist"),
+                "description": _("Manage blog post sections."),
             },
             {
-                "title": _("Orders"),
-                "icon": "shopping_cart",
-                "link": reverse_lazy("admin:accounts_order_changelist"),
-                "description": _("Manage customer orders."),
+                "title": _("Sales Counter"),
+                "icon": "bar_chart",
+                "link": reverse_lazy("admin:accounts_salescounter_changelist"),
+                "description": _("Track sales counters."),
             },
         ],
     },
@@ -245,7 +241,7 @@ UNFOLD = {
         "show_all_applications": True,
         "navigation": [
             {
-                "title": _("Bookstore Management"),
+                "title": _("Management"),
                 "icon": "store",
                 "collapsible": False,
                 "items": [
@@ -255,19 +251,19 @@ UNFOLD = {
                         "link": reverse_lazy("admin:accounts_customuser_changelist"),
                     },
                     {
-                        "title": _("Books"),
-                        "icon": "book",
-                        "link": reverse_lazy("admin:accounts_book_changelist"),
+                        "title": _("Blog Posts"),
+                        "icon": "article",
+                        "link": reverse_lazy("admin:accounts_blogpost_changelist"),
                     },
                     {
-                        "title": _("Book Formats"),
-                        "icon": "auto_stories",
-                        "link": reverse_lazy("admin:accounts_bookformat_changelist"),
+                        "title": _("Blog Content"),
+                        "icon": "notes",
+                        "link": reverse_lazy("admin:accounts_blogcontent_changelist"),
                     },
                     {
-                        "title": _("Orders"),
-                        "icon": "shopping_cart",
-                        "link": reverse_lazy("admin:accounts_order_changelist"),
+                        "title": _("Sales Counter"),
+                        "icon": "bar_chart",
+                        "link": reverse_lazy("admin:accounts_salescounter_changelist"),
                     },
                 ],
             },
