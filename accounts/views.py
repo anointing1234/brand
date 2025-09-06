@@ -41,7 +41,6 @@ def sales_page(request, user):
         'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY
     })
 
-
 def process_user_payment(request):
     if request.method == 'POST':
         try:
@@ -82,8 +81,9 @@ def process_user_payment(request):
                     amount=amount,
                     transaction_id=transaction_id,
                     referring_user=referrer_name,
-                    buyer_email=email    # make sure your model has this field as CharField
+                    buyer_email=email
                 )
+
                 # Update SalesCounter
                 sales = SalesCounter.objects.first()
                 if not sales:
@@ -94,43 +94,30 @@ def process_user_payment(request):
                     sales.hard_copy_sold += 1
                 sales.save()
 
-                # Admin email
-                # send_mail(
-                #     subject='📘 New Book Order – I Am a Brand',
-                #     message=f"""
-                #     📚 NEW BOOK ORDER – I Am a Brand
-                    
-                #     🔹 Email: {email}
-                #     🔹 Plan: {plan}
-                #     🔹 Referrer: {referring_user}
-                #     🔹 Page: {page_name}
-                #     🔹 Txn ID: {transaction_id}
-                #     🔹 Amount: ₦{amount}
-                #     """,
-                #     from_email=settings.ADMIN_EMAIL,
-                #     recipient_list=[settings.ADMIN_EMAIL],
-                # )
+                # Customer email with delivery date
+                delivery_date = "November 1, 2025"
+                customer_message = f"""
+                Dear Customer,
 
-                # Customer email
-                # send_mail(
-                #     subject='📘 Your Order Confirmation – I Am a Brand',
-                #     message=f"""
-                #     Dear Customer,
+                Thank you for ordering "I Am a Brand"!
 
-                #     Thank you for ordering "I Am a Brand"!
+                🔹 Plan: {plan}
+                🔹 Txn ID: {transaction_id}
+                🔹 Amount: ₦{amount}
 
-                #     🔹 Plan: {plan}
-                #     🔹 Txn ID: {transaction_id}
-                #     🔹 Amount: ₦{amount}
+                {'You will receive your download link on ' + delivery_date + '.' if plan in ['Ebook/PDF', 'soft_copy'] else 'Your hard copy will be shipped and you should receive it by ' + delivery_date + '.'}
 
-                #     {'You will receive a download link soon.' if plan in ['Ebook/PDF', 'soft_copy'] else 'We will contact you with delivery details.'}
+                Regards,  
+                I Am a Brand Team
+                """
 
-                #     Regards,
-                #     I Am a Brand Team
-                #     """,
-                #     from_email=settings.EMAIL_HOST_USER,
-                #     recipient_list=[email],
-                # )
+                send_mail(
+                    subject='📘 Your Order Confirmation – I Am a Brand',
+                    message=customer_message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[email],
+                    fail_silently=False,
+                )
 
                 return JsonResponse({'status': 'payment_processed'})
             else:
@@ -141,12 +128,6 @@ def process_user_payment(request):
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
-
-
-
-def contact(request):
-    return render(request, 'contact-us.html')
-
 
 
 def process_payment(request):
@@ -176,7 +157,8 @@ def process_payment(request):
                 fail_silently=False,
             )
 
-            # Customer confirmation email
+            # Customer confirmation email with delivery date
+            delivery_date = "November 1, 2025"
             customer_message = f"""
             Dear Customer,
 
@@ -186,11 +168,11 @@ def process_payment(request):
             - Plan: {plan.title()} Copy
             - Email: {email}
 
-            {'You will receive a download link for your soft copy soon.' if plan == 'soft' else 'Your hard copy will be prepared for shipping. We will contact you soon with delivery details.'}
+            {'You will receive your download link on ' + delivery_date + '.' if plan == 'soft' else 'Your hard copy will be shipped and you should receive it by ' + delivery_date + '.'}
 
             If you have any questions, please contact us at {settings.ADMIN_EMAIL}.
 
-            Best regards,
+            Best regards,  
             I Am a Brand Team
             """
             send_mail(
