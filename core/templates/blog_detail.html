@@ -316,7 +316,7 @@
 
       <!-- Header Text -->
       {% if post.header_text %}
-        <p class="lead mb-5">{{ post.header_text }}</p>
+        <p class="lead mb-5">{{ post.header_text|linebreaksbr  }}</p>
       {% endif %}
 
       <!-- ===== Table of Contents ===== -->
