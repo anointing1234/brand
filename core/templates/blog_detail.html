@@ -292,69 +292,79 @@
     </section>
     <!-- Header banner end -->
 
-    <!-- Blog detail content -->
+   <!-- Blog detail content -->
 <section class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
 
-            <!-- Blog Title -->
-            <h1 class="mb-5 fw-bold">{{ post.title }}</h1>
+      <!-- Blog Title -->
+      <h1 class="mb-4 fw-bold">{{ post.title }}</h1>
 
-            <!-- Meta Info -->
-            <p class="text-muted text-uppercase small mb-5">
-                <span class="text-dark">By: {{ post.author }} </span> 
-                | <span class="badge bg-light text-dark">Category: {{ post.category }}</span>
-            </p>
+      <!-- Meta Info -->
+      <p class="text-muted text-uppercase small mb-4">
+        <span class="text-dark">By: {{ post.author }}</span> 
+        | <span class="badge bg-light text-dark">Category: {{ post.category }}</span>
+        | <span>{{ post.published_at|date:"F d, Y" }}</span>
+      </p>
 
-            <!-- Featured Image -->
-            <img src="{{ post.main_image.url }}" 
-                 class="img-fluid rounded shadow mb-4 w-100" 
-                 alt="{{ post.title }}">
+      <!-- Featured Image -->
+      {% if post.main_image %}
+        <img src="{{ post.main_image.url }}" 
+             class="img-fluid rounded shadow mb-4 w-100" 
+             alt="{{ post.title }}">
+      {% endif %}
 
-            <!-- Header Text -->
-            <p class="lead mb-4">{{ post.header_text }}</p>
+      <!-- Header Text -->
+      {% if post.header_text %}
+        <p class="lead mb-5">{{ post.header_text }}</p>
+      {% endif %}
 
-            <!-- ===== Table of Contents ===== -->
-            {% if contents %}
-            <div class="mb-5 p-4 border rounded bg-light">
-                <h5 class="fw-bold mb-3">CONTENTS</h5>
-                <ul class="list-unstyled">
-                    {% for section in contents %}
-                        {% if section.sub_header %}
-                            <li class="mb-2">
-                                <a href="#section-{{ forloop.counter }}" 
-                                   class="text-decoration-none text-dark">
-                                    <i class="bi bi-chevron-right text-primary"></i> 
-                                    {{ section.sub_header }}
-                                </a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            <!-- ===== End Table of Contents ===== -->
-
-            <!-- Blog Content Sections -->
+      <!-- ===== Table of Contents ===== -->
+      {% if contents %}
+        <div class="mb-5 p-4 border rounded bg-light">
+          <h5 class="fw-bold mb-3">Contents</h5>
+          <ul class="list-unstyled mb-0">
             {% for section in contents %}
-                <article id="section-{{ forloop.counter }}" class="mb-5">
-                    {% if section.sub_header %}
-                        <h3 class="h5 fw-bold mt-4">{{ section.sub_header }}</h3>
-                    {% endif %}
-                    {% if section.image %}
-                        <img src="{{ section.image.url }}" 
-                             class="img-fluid rounded shadow my-3" 
-                             alt="{{ section.sub_header }}">
-                    {% endif %}
-                    <p class="mb-3">{{ section.content_text|linebreaks }}</p>
-                </article>
-            {% empty %}
-                <p>No additional content for this post.</p>
+              {% if section.sub_header %}
+                <li class="mb-2">
+                  <a href="#section-{{ forloop.counter }}" 
+                     class="text-decoration-none text-dark">
+                    <i class="bi bi-chevron-right text-primary"></i> 
+                    {{ section.sub_header }}
+                  </a>
+                </li>
+              {% endif %}
             {% endfor %}
-
+          </ul>
         </div>
+      {% endif %}
+      <!-- ===== End Table of Contents ===== -->
+
+      <!-- Blog Content Sections -->
+      {% for section in contents %}
+        <article id="section-{{ forloop.counter }}" class="mb-5">
+          {% if section.sub_header %}
+            <h3 class="h5 fw-bold mt-4">{{ section.sub_header }}</h3>
+          {% endif %}
+          {% if section.image %}
+            <img src="{{ section.image.url }}" 
+                 class="img-fluid rounded shadow my-3" 
+                 alt="{{ section.sub_header }}">
+          {% endif %}
+
+          <!-- ✅ Preserve formatting -->
+          <div class="blog-content">
+            {{ section.content_text|linebreaksbr }}
+          </div>
+        </article>
+      {% empty %}
+        <p>No additional content for this post.</p>
+      {% endfor %}
+
     </div>
+  </div>
 </section>
+
 
 <!-- Smooth Scroll -->
 <style>
