@@ -31,6 +31,13 @@ def home(request):
 
 
 
+def why_preorder(request):
+    return render(request,'why_preordered.html')
+
+
+
+
+
 
 def sales_page(request, user):
     template_map = {
