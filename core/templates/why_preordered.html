@@ -7,23 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta -->
-    <meta name="description" content="Blog Kevwe Modupe, author of 'I Am a Brand,' for inquiries about personal branding, book pre-orders, or speaking engagements in Nigeria and beyond.">
-    <meta name="keywords" content="Blog Kevwe Modupe, I Am a Brand book, personal branding Nigeria, TSLNigeria Blog, Nigerian entrepreneur, branding book inquiries, book author Blog">
+    <meta name="description" content="Discover why 'I Am a Brand' by Kevwe Modupe is the ultimate personal branding encyclopedia and workbook for entrepreneurs, professionals, and creatives in Nigeria and beyond.">
+    <meta name="keywords" content="I Am a Brand book, personal branding Nigeria, Kevwe Modupe, TSLNigeria, branding book, personal branding strategies">
     <meta name="author" content="Kevwe Modupe">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph (for social sharing) -->
-    <meta property="og:title" content="Blog | I Am a Brand by Kevwe Modupe">
-    <meta property="og:description" content="Get in touch with Kevwe Modupe for questions about 'I Am a Brand,' personal branding, or speaking opportunities.">
+    <meta property="og:title" content="Why Choose I Am a Brand by Kevwe Modupe">
+    <meta property="og:description" content="Learn why 'I Am a Brand' is the go-to guide for building a powerful personal brand with practical strategies and a workbook.">
     <meta property="og:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://iamabrandthebook.com/Blog">
+    <meta property="og:url" content="https://iamabrandthebook.com/why">
     <meta property="og:site_name" content="I Am a Brand">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blog | I Am a Brand by Kevwe Modupe">
-    <meta name="twitter:description" content="Reach out to Kevwe Modupe, author of 'I Am a Brand,' for book inquiries or branding advice.">
+    <meta name="twitter:title" content="Why Choose I Am a Brand by Kevwe Modupe">
+    <meta name="twitter:description" content="Explore why 'I Am a Brand' by Kevwe Modupe is the ultimate resource for personal branding success.">
     <meta name="twitter:image" content="{% static 'assets/images/index2/book-image-main.png' %}">
 
     <!-- Enhanced Book Schema -->
@@ -108,12 +108,12 @@
             "latitude": 6.3350,
             "longitude": 5.6037
         },
-        "BlogPoint": [
+        "contactPoint": [
             {
-                "@type": "BlogPoint",
+                "@type": "ContactPoint",
                 "telephone": "+234-810-123-4567",
                 "email": "info@iamabrandthebook.com",
-                "BlogType": "Customer Service",
+                "contactType": "Customer Service",
                 "areaServed": "NG",
                 "availableLanguage": "English"
             }
@@ -127,20 +127,14 @@
     }
     </script>
 
-    <!-- WebPage Schema for Blog Page -->
+    <!-- WebPage Schema for Why Page -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Blog I Am a Brand",
-        "url": "https://iamabrandthebook.com/Blog",
-        "description": "Blog Kevwe Modupe, author of 'I Am a Brand,' for inquiries about personal branding, book pre-orders, or speaking engagements in Nigeria and beyond.",
-        "mainEntity": {
-            "@type": "BlogPoint",
-            "telephone": "+234-810-123-4567",
-            "email": "info@iamabrandthebook.com",
-            "BlogType": "Customer Service"
-        },
+        "name": "Why Choose I Am a Brand",
+        "url": "https://iamabrandthebook.com/why",
+        "description": "Discover why 'I Am a Brand' by Kevwe Modupe is the ultimate personal branding encyclopedia and workbook for building a powerful brand.",
         "breadcrumb": {
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -153,8 +147,8 @@
                 {
                     "@type": "ListItem",
                     "position": 2,
-                    "name": "Blog",
-                    "item": "https://iamabrandthebook.com/Blog"
+                    "name": "Why",
+                    "item": "https://iamabrandthebook.com/why"
                 }
             ]
         }
@@ -167,7 +161,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" defer>
     <link href="{% static 'assets/css/fontawesome/fontawesome.css' %}" rel="stylesheet" defer>
     <link href="{% static 'assets/css/fontawesome/brands.css' %}" rel="stylesheet" defer>
-    <link href="{% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet" defer>
+    <link href="% static 'assets/css/fontawesome/solid.css' %}" rel="stylesheet" defer>
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" defer>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" defer>
     <!-- AOS CSS -->
@@ -227,9 +221,63 @@
             font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.5px;
         }
+        /* Additional styles for Why Choose section */
+        .why-choose-section {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .why-choose-section h2 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .why-choose-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .why-choose-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .why-choose-section ul li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .why-choose-section ul li::before {
+            content: "👉🏽";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .why-choose-section ol {
+            padding-left: 20px;
+        }
+        .why-choose-section ol li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .why-choose-section .btn {
+            margin-top: 20px;
+        }
+        .book-image {
+            width: 100%;       /* take full width of container */
+            max-width: 400px;  /* but don’t exceed 400px */
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
     </style>
 
-    <title>Blog | I Am a Brand by Kevwe Modupe</title>
+    <title>Why Choose | I Am a Brand by Kevwe Modupe</title>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbarSupportedContent">
@@ -263,7 +311,13 @@
                             <a class="nav-link" href="{% url 'home' %}#chapters">Chapter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'blog' %}">Blog</a>
+                            <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'why_preorder' %}">Why</a>
                         </li>
                     </ul>
                     <a class="btn btn-light rounded-pill text-dark" href="#buy">Buy Now Book</a>
@@ -278,99 +332,56 @@
     <section class="header-banner bookpress-parallax" id="header-banner-id">
         <div class="container d-flex justify-content-between align-items-center text-white">
             <div class="overlay-out">
-                <h1 class="banner-title">Blog </h1>
+                <h1 class="banner-title">Why Preorder I Am a Brand</h1>
                 <p class="text-white"><a href="{% url 'home' %}" class="text-decoration-none text-white">Home</a> /
-                    <a href="{% url 'blog' %}" class="text-decoration-none text-white">Blog Post</a>
+                    <a href="{% url 'why_preorder' %}" class="text-decoration-none text-white">Why</a>
                 </p>
             </div>
-            <img style="width: 150px; height: 150px;" src="{% static 'assets/images/index2/book-image-main.png' %}" class="img-fluid" alt="I Am a Brand Book Cover" loading="lazy">
+            <img style="width: 80px; height: 80px;" src="{% static 'assets/images/index2/book-image-main.png' %}"  alt="I Am a Brand Book Cover" loading="lazy">
             <div class="parallax start-0 top-0 w-100 h-100"></div>
         </div>
     </section>
     <!-- Header banner end -->
 
-   <!-- Blog detail content -->
-<section class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-10">
-
-      <!-- Blog Title -->
-      <h1 class="mb-4 fw-bold">{{ post.title }}</h1>
-
-      <!-- Meta Info -->
-      <p class="text-muted text-uppercase small mb-4">
-        <span class="text-dark">By: {{ post.author }}</span> 
-        | <span class="badge bg-light text-dark">Category: {{ post.category }}</span>
-        | <span>{{ post.published_at|date:"F d, Y" }}</span>
-      </p>
-
-      <!-- Featured Image -->
-      {% if post.main_image %}
-        <img src="{{ post.main_image.url }}" 
-             class="img-fluid rounded shadow mb-4 w-100" 
-             alt="{{ post.title }}">
-      {% endif %}
-
-      <!-- Header Text -->
-      {% if post.header_text %}
-        <p class="lead mb-5">{{ post.header_text|linebreaksbr  }}</p>
-      {% endif %}
-
-      <!-- ===== Table of Contents ===== -->
-      {% if contents %}
-        <div class="mb-5 p-4 border rounded bg-light">
-          <h5 class="fw-bold mb-3">Contents</h5>
-          <ul class="list-unstyled mb-0">
-            {% for section in contents %}
-              {% if section.sub_header %}
-                <li class="mb-2">
-                  <a href="#section-{{ forloop.counter }}" 
-                     class="text-decoration-none text-dark">
-                    <i class="bi bi-chevron-right text-primary"></i> 
-                    {{ section.sub_header }}
-                  </a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+    <!-- Why Choose Section -->
+    <section class="why-choose-section py-5">
+        <div class="container">
+            <div class="col-md-12 text-center mb-4 mb-md-0">
+                <img src="{% static 'assets/images/index2/book-image-main.png' %}" alt="I Am a Brand Book Cover" class="book-image img-fluid" loading="lazy">
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="col-md-8">
+                    <h3 class="fw-bold">I Am A Brand – The Personal Branding Encyclopedia + Workbook</h3>
+                    <p>Here’s the thing: in today’s world, your name is more powerful than any logo, slogan, or business card. It’s the key that unlocks opportunities, opens doors, and commands influence. But only if you know how to use it.</p>
+                    <p>That’s exactly why I Am A Brand – A Personal Branding Encyclopedia was born.</p>
+                    <p>This isn’t just a book you skim through and forget. It’s a blueprint: a complete A–Z guide paired with a practical workbook. Together, they walk you through the real strategies of building a personal brand that speaks for you even before you enter the room.</p>
+                    <p>Inside, you’ll find insights on:</p>
+                    <ul>
+                        <li>How to craft a magnetic identity that resonates.</li>
+                        <li>How to position yourself for visibility and relevance.</li>
+                        <li>How to turn your skills and story into undeniable authority.</li>
+                        <li>How to thrive in today’s digital space without feeling lost in the noise.</li>
+                    </ul>
+                    <p>It’s written for professionals, entrepreneurs, creatives, and yes, even that “ordinary person” who just wants to stop being overlooked.</p>
+                    <p>And here’s where it gets exciting:</p>
+                    <p>Pre-order sales are officially open!</p>
+                    <p>By pre-ordering today, you don’t just get a book; you step into a movement:</p>
+                    <ol>
+                        <li>Exclusive access to the official book launch + a once-in-a-lifetime chance to network with thought leaders and high-impact experts.</li>
+                        <li>Special pre-order price, a thank-you for betting on yourself early.</li>
+                        <li>A bonus bundle of goodies: customized T-shirt, mug, journal, and pen (your toolkit for brand-building energy).</li>
+                        <li>Your name on the Founders List of the I Am A Brand community, etched into the story from the very beginning.</li>
+                    </ol>
+                    <p>Because here’s the truth: personal branding is not a luxury anymore. It’s the lifeline for relevance, credibility, and long-term success.</p>
+                    <p>So, don’t wait until the book is on every shelf. Be the one who owned it first. The one who applied it. The one whose brand transformed in real time.</p>
+                    <p>Your moment is here. Take it.</p>
+                    <a href="https://www.iamabrandthebook.com" class="btn btn-primary">Pre-order now</a>
+                    <p class="mt-3">Your brand is waiting to shine. Let’s build it: one page, one strategy, one win at a time.</p>
+                </div>
+            </div>
         </div>
-      {% endif %}
-      <!-- ===== End Table of Contents ===== -->
-
-      <!-- Blog Content Sections -->
-      {% for section in contents %}
-        <article id="section-{{ forloop.counter }}" class="mb-5">
-          {% if section.sub_header %}
-            <h3 class="h5 fw-bold mt-4">{{ section.sub_header }}</h3>
-          {% endif %}
-          {% if section.image %}
-            <img src="{{ section.image.url }}" 
-                 class="img-fluid rounded shadow my-3" 
-                 alt="{{ section.sub_header }}">
-          {% endif %}
-
-          <!-- ✅ Preserve formatting -->
-          <div class="blog-content">
-            {{ section.content_text|linebreaksbr }}
-          </div>
-        </article>
-      {% empty %}
-        <p>No additional content for this post.</p>
-      {% endfor %}
-
-    </div>
-  </div>
-</section>
-
-
-<!-- Smooth Scroll -->
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
-
-
+    </section>
+    <!-- Why Choose Section End -->
 
     <!-- Scroll Back to Top -->
     <a href="#header-banner-id" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
@@ -398,13 +409,13 @@
                             <li class="mb-3"><a href="#"><span class="ms-1">Books</span></a></li>
                             <li class="mb-3"><a href="#"><span class="ms-1">Podcast</span></a></li>
                             <li class="mb-3"><a href="#"><span class="ms-1">Kevwe Modupe Speaking</span></a></li>
-                            <li class="mb-3"><a href="#"><span class="ms-1">Blog</span></a></li>
+                            <li class="mb-3"><a href="#"><span class="ms-1">Contact</span></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <h4 class="mb-4">Support</h4>
-                    <ul class="li-unstyled ps-0 footer-content footer-Blog">
+                    <ul class="li-unstyled ps-0 footer-content footer-contact">
                         <li class="mb-3"><a href="#">FAQs</a></li>
                         <li class="mb-3"><a href="#">Privacy Policy</a></li>
                         <li class="mb-3"><a href="#">Terms of Use</a></li>
@@ -428,8 +439,6 @@
     </footer>
     <!-- Footer section end -->
 
-   
-
     <!-- Load scripts -->
     <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}" defer></script>
     <script src="{% static 'assets/js/jquery.waypoints.min.js' %}" defer></script>
@@ -439,7 +448,9 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
-
-
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

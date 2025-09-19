@@ -37,13 +37,13 @@ SECRET_KEY = 'django-insecure-v=@*zbkjfqcem@n^hu=t6p^kkn2qcge9hdj*b%ia946-uqg1wu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["iamabrandthebook.com", "www.iamabrandthebook.com"]
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["iamabrandthebook.com", "www.iamabrandthebook.com"]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://iamabrandthebook.com",
-    "https://www.iamabrandthebook.com"
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://iamabrandthebook.com",
+#     "https://www.iamabrandthebook.com"
+# ]
 
 
 
@@ -103,24 +103,24 @@ WSGI_APPLICATION = 'iambd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),  
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql',
+#         'NAME': env('DB_NAME'),  
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#     }
+# }
 
 
 
