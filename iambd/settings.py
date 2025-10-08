@@ -159,16 +159,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'core/static',  # Directory for app-specific static files
+    BASE_DIR / 'core/static',
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory for collected static files
+# STATIC_ROOT is fine as is, WhiteNoise will manage this during deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (user-uploaded content)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'core/media'
+
+# Check if the app is running on Railway (or another production environment)
+if os.environ.get('ON_RAILWAY') == 'true':
+    # 🌟 PRODUCTION SETTING: Use the ABSOLUTE path for the Railway Volume mount.
+    # Assuming Railway places your project in /app, your media is at /app/core/media.
+    MEDIA_ROOT = '/app/core/media'
+else:
+    # DEVELOPMENT SETTING: Your current local path.
+    MEDIA_ROOT = BASE_DIR / 'core/media'
+
 
 
 # Default primary key field type
