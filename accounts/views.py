@@ -56,16 +56,19 @@ def contact(request):
 
 
 
-
 def process_user_payment(request):
     if request.method == 'POST':
         try:
+            print("\n--- PROCESS USER PAYMENT STARTED ---")
+
             # Try JSON first
             if request.headers.get('Content-Type') == 'application/json':
                 data = json.loads(request.body)
+                print("✅ Received JSON data:", data)
             else:
                 # Fallback to form data
                 data = request.POST
+                print("✅ Received form data:", data)
 
             email = data.get('email')
             plan = data.get('plan') or data.get('book_type')
@@ -73,23 +76,38 @@ def process_user_payment(request):
             page_name = data.get('page_name')
             transaction_id = data.get('transaction_id')
 
+            print(f"📩 Email: {email}")
+            print(f"📘 Plan: {plan}")
+            print(f"👤 Referring User: {referring_user}")
+            print(f"📄 Page Name: {page_name}")
+            print(f"💳 Transaction ID: {transaction_id}")
+
             if not transaction_id:
+                print("❌ Transaction ID missing")
                 return JsonResponse({'error': 'Transaction ID missing'}, status=400)
 
             # Verify Paystack transaction
+            print("🔍 Verifying Paystack transaction...")
             paystack = requests.get(
                 f"https://api.paystack.co/transaction/verify/{transaction_id}",
                 headers={"Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}"}
             )
             paystack_response = paystack.json()
+            print("✅ Paystack verification response:", paystack_response)
 
             if paystack_response.get('status') and paystack_response['data']['status'] == 'success':
                 amount = paystack_response['data']['amount'] / 100  # kobo → naira
-                book_type = 'soft_copy' if plan in ['Ebook/PDF', 'soft_copy'] else 'hard_copy'
+                amount_formatted = f"{amount:,.0f}"  # ✅ format to ₦10,000 style
+                print(f"💰 Raw Amount: ₦{amount}")
+                print(f"💰 Formatted Amount: ₦{amount_formatted}")
 
+                book_type = 'soft_copy' if plan in ['Ebook/PDF', 'soft_copy'] else 'hard_copy'
                 referrer_name = referring_user if referring_user else "Anonymous"
 
+                print(f"📖 Book Type: {book_type}")
+
                 # Save to UserSale
+                print("🗃️ Saving to UserSale...")
                 UserSale.objects.create(
                     book_type=book_type,
                     page_name=page_name,
@@ -98,40 +116,52 @@ def process_user_payment(request):
                     referring_user=referrer_name,
                     buyer_email=email
                 )
+                print("✅ UserSale record saved successfully.")
 
                 # Update SalesCounter
+                print("📊 Updating SalesCounter...")
                 sales = SalesCounter.objects.first()
                 if not sales:
+                    print("⚠️ No SalesCounter found — creating a new one.")
                     sales = SalesCounter(soft_copy_sold=0, hard_copy_sold=10)
                 if book_type == 'soft_copy':
                     sales.soft_copy_sold += 1
                 else:
                     sales.hard_copy_sold += 1
                 sales.save()
+                print("✅ SalesCounter updated successfully.")
 
-                # Customer email with logo
+                # Prepare email
+                print("✉️ Preparing confirmation email...")
                 delivery_date = "November 1, 2025"
+                support_email = "info@iamabrandthebook.com"
                 logo_url = f"{settings.SITE_URL}{static('assets/images/logo_white.png')}"
-
                 subject = "📘 Your Order Confirmation – I Am a Brand"
-                from_email = settings.EMAIL_HOST_USER
+                from_email = getattr(settings, "EMAIL_HOST_USER", "noreply@iamabrand.com")
                 to = [email]
 
+                print(f"📧 From: {from_email}")
+                print(f"📬 To: {to}")
+
+                # Plain text email content
                 text_content = f"""
                 Dear Customer,
 
-                Thank you for ordering "I Am a Brand"!
+                Thank you for ordering "I Am a Brand The Book"!
 
                 🔹 Plan: {plan}
                 🔹 Txn ID: {transaction_id}
-                🔹 Amount: ₦{amount}
+                🔹 Amount: ₦{amount_formatted}
 
                 {"You will receive your download link on " + delivery_date + "." if plan in ['Ebook/PDF','soft_copy'] else "Your hard copy will be shipped and you should receive it by " + delivery_date + "."}
+
+                For issues or more enquiries, kindly contact us at {support_email}.
 
                 Regards,
                 I Am a Brand Team
                 """
 
+                # HTML email content
                 html_content = f"""
                 <html>
                   <body style="font-family: Arial, sans-serif; color:#333; line-height:1.6;">
@@ -140,132 +170,50 @@ def process_user_payment(request):
                         <img src="{logo_url}" alt="I Am a Brand Logo" style="height:60px;">
                         <h2 style="color:#0a3d62;">I AM A BRAND</h2>
                       </div>
-
                       <p><strong>Dear Customer,</strong></p>
                       <p>Thank you for ordering <strong>"I Am a Brand"</strong>!</p>
-
                       <ul style="list-style-type:none; padding:0;">
                         <li>📘 <strong>Plan:</strong> {plan}</li>
                         <li>🧾 <strong>Txn ID:</strong> {transaction_id}</li>
-                        <li>💵 <strong>Amount:</strong> ₦{amount}</li>
+                        <li>💵 <strong>Amount:</strong> ₦{amount_formatted}</li>
                       </ul>
-
                       <p>
                         {"You will receive your <b>download link</b> on <strong>" + delivery_date + "</strong>." if plan in ['Ebook/PDF','soft_copy'] else "Your <b>hard copy</b> will be shipped and you should receive it by <strong>" + delivery_date + "</strong>."}
                       </p>
-
+                      <p style="margin-top:15px;">
+                        For issues or more enquiries, kindly contact us at 
+                        <a href="mailto:{support_email}" style="color:#0a3d62; text-decoration:none;">{support_email}</a>.
+                      </p>
                       <p>Regards,<br><strong>I Am a Brand Team</strong></p>
                     </div>
                   </body>
                 </html>
                 """
 
+                # Send email
+                print("🚀 Sending email now...")
                 msg = EmailMultiAlternatives(subject, text_content, from_email, to)
                 msg.attach_alternative(html_content, "text/html")
-                msg.send()
+                send_result = msg.send()
+                print("✅ Email send result:", send_result)
 
+                print("--- PROCESS COMPLETED SUCCESSFULLY ---\n")
                 return JsonResponse({'status': 'payment_processed'})
+
             else:
+                print("❌ Paystack verification failed:", paystack_response)
                 return JsonResponse({'error': 'Transaction verification failed'}, status=400)
 
         except Exception as e:
+            print("🔥 Exception caught during payment processing:", str(e))
             logger.error("Payment processing error", exc_info=True)
             return JsonResponse({'error': str(e)}, status=400)
 
+    print("❌ Invalid request method")
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 
 
-def process_payment(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            email = data.get('email')
-            plan = data.get('plan')
-
-            # Admin notification email
-            admin_message = f"""
-            📚 NEW BOOK ORDER – I Am a Brand
-
-            🔹 Email Address: {email}
-            🔹 Selected Plan: {plan}
-
-            Please follow up with this customer for confirmation and delivery.
-
-            Regards,
-            I Am a Brand Website
-            """
-            # Send plain text admin email
-            EmailMultiAlternatives(
-                subject='📘 New Book Order – I Am a Brand',
-                body=admin_message,
-                from_email=settings.ADMIN_EMAIL,
-                to=[settings.ADMIN_EMAIL]
-            ).send()
-
-            # Customer confirmation email with logo
-            delivery_date = "November 1, 2025"
-            logo_url = f"{settings.SITE_URL}{static('assets/images/logo_white.png')}"
-
-            subject = "📘 Your Order Confirmation – I Am a Brand"
-            from_email = settings.EMAIL_HOST_USER
-            to = [email]
-
-            text_content = f"""
-            Dear Customer,
-
-            Thank you for ordering "I Am a Brand"!
-
-            🔹 Order Details:
-            - Plan: {plan.title()} Copy
-            - Email: {email}
-
-            {"You will receive your download link on " + delivery_date + "." if plan == 'soft' else "Your hard copy will be shipped and you should receive it by " + delivery_date + "."}
-
-            If you have any questions, please contact us at {settings.ADMIN_EMAIL}.
-
-            Best regards,
-            I Am a Brand Team
-            """
-
-            html_content = f"""
-            <html>
-              <body style="font-family: Arial, sans-serif; color:#333; line-height:1.6;">
-                <div style="max-width:600px; margin:auto; padding:20px; border:1px solid #eee; border-radius:10px;">
-                  <div style="text-align:center; margin-bottom:20px;">
-                    <img src="{logo_url}" alt="I Am a Brand Logo" style="height:60px;">
-                    <h2 style="color:#0a3d62;">I AM A BRAND</h2>
-                  </div>
-
-                  <p><strong>Dear Customer,</strong></p>
-                  <p>Thank you for ordering <strong>"I Am a Brand"</strong>!</p>
-
-                  <ul style="list-style-type:none; padding:0;">
-                    <li>📘 <strong>Plan:</strong> {plan.title()} Copy</li>
-                    <li>📧 <strong>Email:</strong> {email}</li>
-                  </ul>
-
-                  <p>
-                    {"You will receive your <b>download link</b> on <strong>" + delivery_date + "</strong>." if plan == 'soft' else "Your <b>hard copy</b> will be shipped and you should receive it by <strong>" + delivery_date + "</strong>."}
-                  </p>
-
-                  <p>If you have any questions, please contact us at {settings.ADMIN_EMAIL}.</p>
-
-                  <p>Best regards,<br><strong>I Am a Brand Team</strong></p>
-                </div>
-              </body>
-            </html>
-            """
-
-            msg = EmailMultiAlternatives(subject, text_content, from_email, to)
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
-
-            return JsonResponse({'status': 'payment_processed'})
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=400)
-    return JsonResponse({'error': 'Invalid request method'}, status=405)
-    
 def send_contact_message(request):
     if request.method == 'POST':
         data = json.loads(request.body)

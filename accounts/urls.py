@@ -3,19 +3,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 from django.views.static import serve
-from django.views.generic import TemplateView
- 
+from django.views.generic import TemplateView 
+from django.shortcuts import redirect
+
+def redirect_home(request):
+    return redirect("/", permanent=True)
+
+
 
 
 urlpatterns = [ 
     path('',views.home,name="home"),        
-    path('home/',views.home,name="home"),   
+    path('home/',redirect_home),   
     path('contact/',views.contact,name='contact'),  
     path('blog/',views.blog_view,name='blog'),
     path("blog/<slug:slug>/", views.blog_detail, name="blog_detail"),
     path('api/sales-data/', views.get_sales_data, name='get_sales_data'),
     path('api/update-sales/', views.update_sales, name='update_sales'),
-    path('process-payment/', views.process_payment, name='process_payment'),
     path('payment-success/', TemplateView.as_view(template_name='payment_success.html')),
     path('send-contact-message/', views.send_contact_message, name='send_contact_message'),
     path('shop/<str:user>/', views.sales_page, name='sales_page'),

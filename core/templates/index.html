@@ -1085,10 +1085,8 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
     <script src="https://js.paystack.co/v1/inline.js" defer></script>
    
 
-    <script>
-    // Initialize AOS
-    AOS.init();
-</script>
+    
+
 
 <script>
     let selectedPlan = "";
@@ -1116,15 +1114,15 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
         document.querySelectorAll('.pay-btn').forEach(button => {
             button.addEventListener('click', function () {
                 const today = new Date();
-                const releaseDate = new Date(today.getFullYear(), 8, 6); // Month is 0-based → 8 = September
+                const releaseDate = new Date(today.getFullYear(), 8, 6); // September = 8
 
-                // Check if current date is before Sept 6
+                // Before release → show preorder modal
                 if (today < releaseDate) {
                     preorderModalInstance.show();
-                    return; // Stop here, don’t continue to payment
+                    return;
                 }
 
-                // Otherwise continue with normal payment flow
+                // Otherwise normal payment
                 selectedPlan = this.getAttribute('data-plan');
                 selectedPrice = this.getAttribute('data-price');
 
@@ -1141,6 +1139,7 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
     function startPayment() {
         const email = document.getElementById('userEmail').value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if (!email || !emailRegex.test(email)) {
             alert("Please enter a valid email address.");
             return;
@@ -1154,8 +1153,12 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
             email: email,
             amount: selectedPrice * 100,
             currency: "NGN",
+            // Optional: create your own ref prefix
+            ref: "BRAND_" + Math.floor((Math.random() * 1000000000) + 1),
             callback: function (response) {
-                fetch('/process-payment/', {
+                console.log("Paystack response:", response);
+
+                fetch('/process_purchase/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1163,11 +1166,16 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
                     },
                     body: JSON.stringify({
                         email: email,
-                        plan: selectedPlan
+                        plan: selectedPlan,
+                        transaction_id: response.reference   // ✅ Added transaction_id
                     })
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error('Payment processing failed');
+                .then(async (res) => {
+                    const text = await res.text();
+                    console.log("Response from process_purchase:", res.status, text);
+
+                    if (!res.ok) throw new Error('Payment processing failed');
+
                     const softCopyElement = document.querySelector('.sales-grid div:nth-child(1) .blink');
                     const hardCopyElement = document.querySelector('.sales-grid div:nth-child(2) .blink');
                     let softCopySold = parseInt(softCopyElement.textContent);
@@ -1181,6 +1189,7 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
                         hardCopyElement.textContent = hardCopySold;
                     }
 
+                    // update sales data
                     return fetch('/api/update-sales/', {
                         method: 'POST',
                         headers: {
@@ -1193,8 +1202,11 @@ Kevwe Modupe is well-traveled, a devoted husband to Sarah Modupe, and father to 
                         })
                     });
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error('Failed to update sales data');
+                .then(async (res) => {
+                    const text = await res.text();
+                    console.log("Response from update-sales:", res.status, text);
+
+                    if (!res.ok) throw new Error('Failed to update sales data');
                     window.location.href = "/payment-success/";
                 })
                 .catch(error => {

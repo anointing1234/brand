@@ -17,6 +17,7 @@ from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 import environ
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,13 +38,12 @@ SECRET_KEY = 'django-insecure-v=@*zbkjfqcem@n^hu=t6p^kkn2qcge9hdj*b%ia946-uqg1wu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = ["iamabrandthebook.com", "www.iamabrandthebook.com"]
-
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://iamabrandthebook.com",
-#     "https://www.iamabrandthebook.com"
-# ]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["iamabrandthebook.com", "www.iamabrandthebook.com"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://iamabrandthebook.com",
+    "https://www.iamabrandthebook.com"
+]
 
 
 
@@ -65,8 +65,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    "django.contrib.sitemaps",
+    "django.contrib.sites",
     'accounts',
     'paystack',
+    'anymail',
+ 
 ]
 
 MIDDLEWARE = [
@@ -103,24 +107,24 @@ WSGI_APPLICATION = 'iambd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE':'django.db.backends.postgresql',
-#         'NAME': env('DB_NAME'),  
-#         'USER': env('DB_USER'),
-#         'PASSWORD': env('DB_PASSWORD'),
-#         'HOST': env('DB_HOST'),
-#         'PORT': env('DB_PORT'),
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),  
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+    }
+}
 
 
 
@@ -159,17 +163,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
+
+
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'core/static',  # Directory for app-specific static files
+    BASE_DIR / 'core/static',
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory for collected static files
+# STATIC_ROOT is fine as is, WhiteNoise will manage this during deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (user-uploaded content)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'core/media'
 
+# Check if the app is running on Railway (or another production environment)
+if os.environ.get('ON_RAILWAY') == 'true':
+    # 🌟 PRODUCTION SETTING: Use the ABSOLUTE path for the Railway Volume mount.
+    # Assuming Railway places your project in /app, your media is at /app/core/media.
+    MEDIA_ROOT = '/app/core/media'
+else:
+    # DEVELOPMENT SETTING: Your current local path.
+    MEDIA_ROOT = BASE_DIR / 'core/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -180,22 +195,34 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # emaill config
 
-EMAIL_BACKEND      = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST         = 'smtp.migadu.com'       # or smtp.zoho.com
-EMAIL_PORT         = 587
-EMAIL_USE_TLS      = True
-EMAIL_USE_SSL      = False
-EMAIL_HOST_USER    = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD= env('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
 ADMIN_EMAIL = env('ADMIN_EMAIL')
 
+load_dotenv()  # only needed if you’re using a .env file locally
+
+PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
 
 
 
-# Paystack settings
-PAYSTACK_PUBLIC_KEY = env('PAYSTACK_PUBLIC_KEY', default='pk_test_your_public_key')
-PAYSTACK_SECRET_KEY = env('PAYSTACK_SECRET_KEY', default='sk_test_your_secret_key')
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+
+if not RESEND_API_KEY:
+    print("❌ RESEND_API_KEY not found in environment!")
+else:
+    print("✅ RESEND_API_KEY loaded successfully")
+
+
+
+# SITE_URL = "http://127.0.0.1:8000" 
+SITE_URL = "https://iamabrandthebook.com"
+
+# Optional: Verify that both exist
+if not PAYSTACK_PUBLIC_KEY:
+    print("⚠️ PAYSTACK_PUBLIC_KEY not found in environment!")
+
+
 
 
 UNFOLD = {
