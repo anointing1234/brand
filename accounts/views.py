@@ -135,7 +135,8 @@ def process_user_payment(request):
                 print("✉️ Preparing confirmation email...")
                 delivery_date = "November 1, 2025"
                 support_email = "info@iamabrandthebook.com"
-                logo_url = f"{settings.SITE_URL}{static('assets/images/logo_white.png')}"
+                logo_path = static('assets/images/logo_white.png')
+                logo_url = f"{settings.SITE_URL.rstrip('/')}{logo_path}"
                 subject = "📘 Your Order Confirmation – I Am a Brand"
                 from_email = getattr(settings, "EMAIL_HOST_USER", "noreply@iamabrand.com")
                 to = [email]
