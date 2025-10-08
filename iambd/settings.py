@@ -47,6 +47,8 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 
+
+
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 
