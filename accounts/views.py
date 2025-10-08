@@ -135,8 +135,7 @@ def process_user_payment(request):
                 print("✉️ Preparing confirmation email...")
                 delivery_date = "November 1, 2025"
                 support_email = "info@iamabrandthebook.com"
-                logo_path = static('assets/images/logo_white.png')
-                logo_url = f"{settings.SITE_URL.rstrip('/')}{logo_path}"
+                logo_url = f"{settings.SITE_URL}/static/assets/images/logo_white.png"
                 subject = "📘 Your Order Confirmation – I Am a Brand"
                 from_email = getattr(settings, "EMAIL_HOST_USER", "noreply@iamabrand.com")
                 to = [email]
@@ -169,7 +168,7 @@ def process_user_payment(request):
                     <div style="max-width:600px; margin:auto; padding:20px; border:1px solid #eee; border-radius:10px;">
                       <div style="text-align:center; margin-bottom:20px;">
                         <img src="{logo_url}" alt="I Am a Brand Logo" style="height:60px;">
-                        <h2 style="color:#0a3d62;">I AM A BRAND</h2>
+                        <h2 style="color:#0a3d62;">I AM A BRAND THE BOOK</h2>
                       </div>
                       <p><strong>Dear Customer,</strong></p>
                       <p>Thank you for ordering <strong>"I Am a Brand"</strong>!</p>
