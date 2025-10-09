@@ -140,7 +140,7 @@ def process_user_payment(request):
                 support_email = "info@iamabrandthebook.com"
                 banner_url = f"{settings.SITE_URL}/static/assets/images/index2/email_banner.png"  # 👈 Your banner image path 
                 signature_url = f"{settings.SITE_URL}/static/assets/images/index2/signature-1.png"
-                subject = "I Am A Brand — Confirmation & Next Steps"
+                subject = "I Am A Brand — Confirmation"
                 from_email = getattr(settings, "EMAIL_HOST_USER", "noreply@iamabrand.com")
                 to = [email]
 
