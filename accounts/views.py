@@ -138,7 +138,8 @@ def process_user_payment(request):
                 # Static values
                 delivery_date = "November 30, 2025"
                 support_email = "info@iamabrandthebook.com"
-                banner_url = f"{settings.SITE_URL}/static/assets/images/index2/email_banner.png"  # 👈 Your banner image path
+                banner_url = f"{settings.SITE_URL}/static/assets/images/index2/email_banner.png"  # 👈 Your banner image path 
+                signature_url = f"{settings.SITE_URL}static/assets/images/index2/signature-1.png"
                 subject = "I Am A Brand — Confirmation & Next Steps"
                 from_email = getattr(settings, "EMAIL_HOST_USER", "noreply@iamabrand.com")
                 to = [email]
@@ -225,7 +226,18 @@ def process_user_payment(request):
 
                             <p>Wishing you every success as you step boldly into your next chapter.</p>
 
-                            <p style="margin-top:20px;"><strong>Warm regards,</strong><br>The I Am A Brand Team</p>
+                                <p style="margin-top:20px;">
+                                <strong>Warm regards,</strong><br>
+                                The I Am A Brand Team
+                                </p>
+
+                                <!-- Signature Image -->
+                                <div style="margin-top:10px; margin-bottom:30px;">
+                                <img src="{signature_url}" 
+                                    alt="Signature - I Am A Brand Team" 
+                                    style="width:150px; height:auto; display:block;">
+                                </div>
+
                         </div>
 
                         <!-- Footer -->
