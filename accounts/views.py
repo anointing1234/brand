@@ -132,61 +132,107 @@ def process_user_payment(request):
                 print("✅ SalesCounter updated successfully.")
 
                 # Prepare email
+                # Prepare and send confirmation email
                 print("✉️ Preparing confirmation email...")
-                delivery_date = "November 1, 2025"
+
+                # Static values
+                delivery_date = "November 30, 2025"
                 support_email = "info@iamabrandthebook.com"
-                logo_url = f"{settings.SITE_URL}/static/assets/images/logo_white.png"
-                subject = "📘 Your Order Confirmation – I Am a Brand"
+                banner_url = f"{settings.SITE_URL}/static/assets/images/index2/email_banner.png"  # 👈 Your banner image path
+                subject = "I Am A Brand — Confirmation & Next Steps"
                 from_email = getattr(settings, "EMAIL_HOST_USER", "noreply@iamabrand.com")
                 to = [email]
 
                 print(f"📧 From: {from_email}")
                 print(f"📬 To: {to}")
 
-                # Plain text email content
+                # Determine delivery message
+                if plan in ['Ebook/PDF', 'soft_copy']:
+                    delivery_message = f'You will receive your download link on {delivery_date}.'
+                else:
+                    delivery_message = f'Your printed copy will be on its way soon and is expected to arrive by {delivery_date}.'
+
+                # Plain text version
                 text_content = f"""
+                Subject: I Am A Brand — Confirmation & Next Steps
+
                 Dear Customer,
 
-                Thank you for ordering "I Am a Brand The Book"!
+                Thank you for purchasing I Am A Brand.
+                You didn’t just buy a book; you made a decision to elevate your story, sharpen your identity, 
+                and build a brand that commands its own space. It’s a powerful move that takes courage — and you did it!
 
-                🔹 Plan: {plan}
-                🔹 Txn ID: {transaction_id}
-                🔹 Amount: ₦{amount_formatted}
+                Here are your order details:
+                📘 Plan: {plan}
+                🧾 Transaction ID: {transaction_id}
+                💵 Amount: ₦{amount_formatted}
 
-                {"You will receive your download link on " + delivery_date + "." if plan in ['Ebook/PDF','soft_copy'] else "Your hard copy will be shipped and you should receive it by " + delivery_date + "."}
+                {delivery_message}
 
-                For issues or more enquiries, kindly contact us at {support_email}.
+                We genuinely hope this book inspires clarity, confidence, and the kind of momentum that transforms how the world sees you. 
+                You’ve made an incredible investment in your growth, and we can’t wait for you to experience its full impact.
 
-                Regards,
-                I Am a Brand Team
+                If you have any questions or need support, feel free to reach out at {support_email}.
+
+                Wishing you every success as you step boldly into your next chapter.
+
+                Warm regards,  
+                The I Am A Brand Team
                 """
 
-                # HTML email content
+                # HTML version (banner at top)
                 html_content = f"""
                 <html>
-                  <body style="font-family: Arial, sans-serif; color:#333; line-height:1.6;">
-                    <div style="max-width:600px; margin:auto; padding:20px; border:1px solid #eee; border-radius:10px;">
-                      <div style="text-align:center; margin-bottom:20px;">
-                        <img src="{logo_url}" alt="I Am a Brand Logo" style="height:60px;">
-                        <h2 style="color:#0a3d62;">I AM A BRAND THE BOOK</h2>
-                      </div>
-                      <p><strong>Dear Customer,</strong></p>
-                      <p>Thank you for ordering <strong>"I Am a Brand"</strong>!</p>
-                      <ul style="list-style-type:none; padding:0;">
-                        <li>📘 <strong>Plan:</strong> {plan}</li>
-                        <li>🧾 <strong>Txn ID:</strong> {transaction_id}</li>
-                        <li>💵 <strong>Amount:</strong> ₦{amount_formatted}</li>
-                      </ul>
-                      <p>
-                        {"You will receive your <b>download link</b> on <strong>" + delivery_date + "</strong>." if plan in ['Ebook/PDF','soft_copy'] else "Your <b>hard copy</b> will be shipped and you should receive it by <strong>" + delivery_date + "</strong>."}
-                      </p>
-                      <p style="margin-top:15px;">
-                        For issues or more enquiries, kindly contact us at 
-                        <a href="mailto:{support_email}" style="color:#0a3d62; text-decoration:none;">{support_email}</a>.
-                      </p>
-                      <p>Regards,<br><strong>I Am a Brand Team</strong></p>
+                <body style="font-family: 'Segoe UI', Arial, sans-serif; color:#333; background-color:#f9f9f9; margin:0; padding:0;">
+                    <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.05);">
+                    
+                    <!-- Banner -->
+                    <div style="width:100%; height:auto;">
+                        <img src="{banner_url}" alt="I Am A Brand Banner" style="width:100%; display:block;">
                     </div>
-                  </body>
+
+                    <!-- Title Section -->
+                    <div style="text-align:center; padding:25px 20px; background-color:#0a3d62;">
+                        <h2 style="color:#ffffff; margin:0; font-size:24px; letter-spacing:1px;">I AM A BRAND — THE BOOK</h2>
+                        <p style="color:#dfe6e9; font-size:14px; margin-top:5px;">Confirmation & Next Steps</p>
+                    </div>
+
+                    <!-- Body Content -->
+                    <div style="padding:30px;">
+                        <p><strong>Dear Customer,</strong></p>
+
+                        <p>Thank you for purchasing <strong>I Am A Brand</strong>.</p>
+                        <p>You didn’t just buy a book; you made a decision to elevate your story, sharpen your identity, 
+                        and build a brand that commands its own space. It’s a powerful move that takes courage — and you did it!</p>
+
+                        <h3 style="color:#0a3d62; margin-top:25px;">Your Order Details</h3>
+                        <ul style="list-style-type:none; padding:0; margin:0;">
+                        <li>📘 <strong>Plan:</strong> {plan}</li>
+                        <li>🧾 <strong>Transaction ID:</strong> {transaction_id}</li>
+                        <li>💵 <strong>Amount:</strong> ₦{amount_formatted}</li>
+                        </ul>
+
+                        <p style="margin-top:20px;">{delivery_message}</p>
+
+                        <p style="margin-top:20px;">
+                        We genuinely hope this book inspires clarity, confidence, and the kind of momentum that transforms how the world sees you. 
+                        You’ve made an incredible investment in your growth, and we can’t wait for you to experience its full impact.
+                        </p>
+
+                        <p>If you have any questions or need support, feel free to reach out at 
+                        <a href="mailto:{support_email}" style="color:#0a3d62; text-decoration:none;">{support_email}</a>.</p>
+
+                        <p>Wishing you every success as you step boldly into your next chapter.</p>
+
+                        <p style="margin-top:20px;"><strong>Warm regards,</strong><br>The I Am A Brand Team</p>
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="background-color:#f1f2f6; text-align:center; padding:15px; font-size:12px; color:#636e72;">
+                        © {datetime.now().year} I Am A Brand. All rights reserved.
+                    </div>
+                    </div>
+                </body>
                 </html>
                 """
 
@@ -196,6 +242,7 @@ def process_user_payment(request):
                 msg.attach_alternative(html_content, "text/html")
                 send_result = msg.send()
                 print("✅ Email send result:", send_result)
+
 
                 print("--- PROCESS COMPLETED SUCCESSFULLY ---\n")
                 return JsonResponse({'status': 'payment_processed'})
