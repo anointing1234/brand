@@ -183,57 +183,58 @@ def process_user_payment(request):
                 # HTML version (banner at top)
                 html_content = f"""
                 <html>
-                <body style="font-family: 'Segoe UI', Arial, sans-serif; color:#333; background-color:#f9f9f9; margin:0; padding:0;">
-                    <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.05);">
-                    
-                    <!-- Banner -->
-                    <div style="width:100%; height:auto;">
-                        <img src="{banner_url}" alt="I Am A Brand Banner" style="width:100%; display:block;">
-                    </div>
+                    <body style="font-family: 'Segoe UI', Arial, sans-serif; color:#333; background-color:#f9f9f9; margin:0; padding:0;">
+                        <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.05);">
+                        
+                        <!-- Banner -->
+                        <div style="width:100%; overflow:hidden;">
+                            <img src="{banner_url}" 
+                                alt="I Am A Brand Banner" 
+                                style="width:100%; height:auto; display:block; max-height:250px; object-fit:cover;">
+                        </div>
 
-                    <!-- Title Section -->
-                    <div style="text-align:center; padding:25px 20px; background-color:#0a3d62;">
-                        <h2 style="color:#ffffff; margin:0; font-size:24px; letter-spacing:1px;">I AM A BRAND — THE BOOK</h2>
-                        <p style="color:#dfe6e9; font-size:14px; margin-top:5px;">Confirmation & Next Steps</p>
-                    </div>
+                        <!-- Title Section -->
+                        <div style="text-align:center; padding:20px 20px; background-color:#0a3d62; margin-bottom:25px;">
+                            <h2 style="color:#ffffff; margin:0; font-size:24px; letter-spacing:1px;">I AM A BRAND — THE BOOK</h2>
+                        </div>
 
-                    <!-- Body Content -->
-                    <div style="padding:30px;">
-                        <p><strong>Dear Customer,</strong></p>
+                        <!-- Body Content -->
+                        <div style="padding:30px;">
+                            <p><strong>Dear Customer,</strong></p>
 
-                        <p>Thank you for purchasing <strong>I Am A Brand</strong>.</p>
-                        <p>You didn’t just buy a book; you made a decision to elevate your story, sharpen your identity, 
-                        and build a brand that commands its own space. It’s a powerful move that takes courage — and you did it!</p>
+                            <p>Thank you for purchasing <strong>I Am A Brand</strong>.</p>
+                            <p>You didn’t just buy a book; you made a decision to elevate your story, sharpen your identity, 
+                            and build a brand that commands its own space. It’s a powerful move that takes courage — and you did it!</p>
 
-                        <h3 style="color:#0a3d62; margin-top:25px;">Your Order Details</h3>
-                        <ul style="list-style-type:none; padding:0; margin:0;">
-                        <li>📘 <strong>Plan:</strong> {plan}</li>
-                        <li>🧾 <strong>Transaction ID:</strong> {transaction_id}</li>
-                        <li>💵 <strong>Amount:</strong> ₦{amount_formatted}</li>
-                        </ul>
+                            <h3 style="color:#0a3d62; margin-top:25px;">Your Order Details</h3>
+                            <ul style="list-style-type:none; padding:0; margin:0;">
+                            <li>📘 <strong>Plan:</strong> {plan}</li>
+                            <li>🧾 <strong>Transaction ID:</strong> {transaction_id}</li>
+                            <li>💵 <strong>Amount:</strong> ₦{amount_formatted}</li>
+                            </ul>
 
-                        <p style="margin-top:20px;">{delivery_message}</p>
+                            <p style="margin-top:20px;">{delivery_message}</p>
 
-                        <p style="margin-top:20px;">
-                        We genuinely hope this book inspires clarity, confidence, and the kind of momentum that transforms how the world sees you. 
-                        You’ve made an incredible investment in your growth, and we can’t wait for you to experience its full impact.
-                        </p>
+                            <p style="margin-top:20px;">
+                            We genuinely hope this book inspires clarity, confidence, and the kind of momentum that transforms how the world sees you. 
+                            You’ve made an incredible investment in your growth, and we can’t wait for you to experience its full impact.
+                            </p>
 
-                        <p>If you have any questions or need support, feel free to reach out at 
-                        <a href="mailto:{support_email}" style="color:#0a3d62; text-decoration:none;">{support_email}</a>.</p>
+                            <p>If you have any questions or need support, feel free to reach out at 
+                            <a href="mailto:{support_email}" style="color:#0a3d62; text-decoration:none;">{support_email}</a>.</p>
 
-                        <p>Wishing you every success as you step boldly into your next chapter.</p>
+                            <p>Wishing you every success as you step boldly into your next chapter.</p>
 
-                        <p style="margin-top:20px;"><strong>Warm regards,</strong><br>The I Am A Brand Team</p>
-                    </div>
+                            <p style="margin-top:20px;"><strong>Warm regards,</strong><br>The I Am A Brand Team</p>
+                        </div>
 
-                    <!-- Footer -->
-                    <div style="background-color:#f1f2f6; text-align:center; padding:15px; font-size:12px; color:#636e72;">
-                        © {datetime.now().year} I Am A Brand. All rights reserved.
-                    </div>
-                    </div>
-                </body>
-                </html>
+                        <!-- Footer -->
+                        <div style="background-color:#f1f2f6; text-align:center; padding:15px; font-size:12px; color:#636e72;">
+                            © {datetime.now().year} I Am A Brand. All rights reserved.
+                        </div>
+                        </div>
+                    </body>
+                    </html>
                 """
 
                 # Send email
